@@ -69,46 +69,47 @@ body {
 }
 
 .brand-header {
-  padding: 24px 20px;
+  padding: 22px 18px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid #23262d;
 }
 
-.brand-logo {
-  font-size: 26px;
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2));
-  border: 1px solid rgba(16, 185, 129, 0.4);
+.brand-logo.semrush-logo-box {
+  width: 42px;
+  height: 42px;
+  background: #191b20;
+  border: 1px solid rgba(255, 100, 45, 0.4);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 14px rgba(255, 100, 45, 0.25);
+  flex-shrink: 0;
 }
 
 .brand-text h2 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   color: #ffffff;
 }
 
-.brand-text span {
-  font-size: 10px;
+.semrush-subbrand {
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--accent-emerald);
+  letter-spacing: 1px;
+  color: #ff642d;
   display: block;
   margin-top: 2px;
 }
 
 .nav-menu {
-  padding: 20px 12px;
+  padding: 18px 10px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex: 1;
 }
 
@@ -116,28 +117,46 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 12px 14px;
+  padding: 10px 14px;
   background: transparent;
-  border: 1px solid transparent;
-  color: var(--text-muted);
+  border: none;
+  border-left: 3px solid transparent;
+  color: #9a9da6;
   font-size: 13px;
   font-weight: 500;
-  border-radius: var(--radius-sm);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   cursor: pointer;
   transition: var(--transition);
   text-align: left;
 }
 
+.nav-svg-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #727782;
+  transition: var(--transition);
+}
+
 .nav-btn:hover {
-  background-color: var(--bg-card);
-  color: var(--text-main);
+  background-color: #1e2026;
+  color: #ffffff;
+}
+
+.nav-btn:hover .nav-svg-icon {
+  color: #ff642d;
 }
 
 .nav-btn.active {
-  background: linear-gradient(90deg, rgba(16, 185, 129, 0.15), transparent);
-  border-left: 3px solid var(--accent-emerald);
+  background: rgba(255, 100, 45, 0.12);
+  border-left: 3px solid #ff642d;
   color: #ffffff;
   font-weight: 600;
+}
+
+.nav-btn.active .nav-svg-icon {
+  color: #ff642d;
+}
 }
 
 .nav-btn .icon {
@@ -1076,3 +1095,649 @@ mark.kw-occurrence {
   text-align: center;
   padding: 24px 0;
 }
+
+/* =============================================================================
+   SEMrush-Inspired High-Fidelity UI/UX & Data Density Styles
+   ============================================================================= */
+
+/* SEMrush Match Strip */
+.semrush-match-strip {
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid #23262d;
+  padding-top: 14px;
+  align-items: center;
+}
+
+.match-btn {
+  background: transparent;
+  border: 1px solid #2b2e36;
+  color: #9a9da6;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.match-btn:hover {
+  color: #ffffff;
+  border-color: #424652;
+}
+
+.match-btn.active {
+  background: rgba(255, 100, 45, 0.15);
+  color: #ff642d;
+  border-color: rgba(255, 100, 45, 0.5);
+}
+
+/* SEMrush Primary Buttons */
+.semrush-btn-primary, .semrush-search-btn {
+  background: #ff642d !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(255, 100, 45, 0.35);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.semrush-btn-primary:hover, .semrush-search-btn:hover {
+  background: #ff7e4f !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 100, 45, 0.45);
+}
+
+.semrush-btn-accent {
+  background: #2f78ff !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.semrush-btn-accent:hover {
+  background: #4b8eff !important;
+}
+
+.semrush-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Breadcrumb & Section Titles */
+.semrush-breadcrumb {
+  font-size: 11px;
+  color: #727782;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.semrush-version-badge {
+  background: rgba(255, 100, 45, 0.15) !important;
+  color: #ff642d !important;
+  border: 1px solid rgba(255, 100, 45, 0.4) !important;
+}
+
+.panel-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.title-svg-icon {
+  color: #ff642d;
+  flex-shrink: 0;
+}
+
+/* Search Input with Vector Icon */
+.search-input-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.input-search-svg {
+  position: absolute;
+  left: 10px;
+  color: #626673;
+  pointer-events: none;
+}
+
+.search-input.has-icon {
+  padding-left: 32px;
+}
+
+/* SEMrush Checkbox & Sort Arrows */
+.semrush-checkbox {
+  accent-color: #ff642d;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.sort-icon {
+  color: #555964;
+  font-size: 11px;
+  margin-left: 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sort-icon:hover {
+  color: #ff642d;
+}
+
+/* SEMrush Summary Bar (5 KPI Cards) */
+.semrush-summary-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.semrush-metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.semrush-metric-card:hover {
+  border-color: rgba(255, 100, 45, 0.4);
+  background: var(--bg-card-hover);
+}
+
+.semrush-metric-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.semrush-metric-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.2;
+}
+
+.semrush-metric-val.text-green {
+  color: var(--accent-emerald);
+}
+
+.semrush-metric-sub {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* SEMrush KD Circle Indicator in KPI */
+.semrush-kd-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.semrush-kd-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+  background: #25252d;
+  border: 3px solid #eab308;
+}
+
+.semrush-kd-tier {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* SEMrush Competitive Density Bar in KPI */
+.density-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.density-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #272730;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.density-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
+  border-radius: 4px;
+}
+
+.density-val {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+}
+
+/* Toolbar & View Controls */
+.queries-toolbar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.queries-view-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.view-switch-btns {
+  display: flex;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.view-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.view-btn.active {
+  background: #272730;
+  color: #ffffff;
+}
+
+/* SEMrush Mini Intent Badges */
+.semrush-mini-intent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  margin-right: 4px;
+  text-transform: uppercase;
+}
+
+.intent-c {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.5);
+}
+
+.intent-i {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.5);
+}
+
+.intent-t {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+}
+
+.intent-n {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.5);
+}
+
+/* SEMrush Full Intent Pill (in Tables and Cards) */
+.semrush-intent-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.semrush-intent-pill.commercial {
+  background: rgba(168, 85, 247, 0.15);
+  color: #d8b4fe;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.semrush-intent-pill.informational {
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.semrush-intent-pill.transactional {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.semrush-intent-pill.navigational {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fde047;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+/* SEMrush KD Badge with Ring Gauge */
+.semrush-kd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kd-circle-mini {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+  background: #18181d;
+  flex-shrink: 0;
+}
+
+.kd-circle-mini.kd-very-easy {
+  border: 2.5px solid #00cc83;
+  color: #00cc83;
+}
+
+.kd-circle-mini.kd-easy {
+  border: 2.5px solid #10b981;
+  color: #10b981;
+}
+
+.kd-circle-mini.kd-possible {
+  border: 2.5px solid #eab308;
+  color: #eab308;
+}
+
+.kd-circle-mini.kd-difficult {
+  border: 2.5px solid #f97316;
+  color: #f97316;
+}
+
+.kd-circle-mini.kd-hard {
+  border: 2.5px solid #ef4444;
+  color: #ef4444;
+}
+
+.kd-circle-mini.kd-very-hard {
+  border: 2.5px solid #b91c1c;
+  color: #b91c1c;
+}
+
+.kd-tier-text {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Volume Cell with Trend Bar */
+.vol-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vol-num {
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.vol-trend-bars {
+  display: flex;
+  gap: 2px;
+  align-items: flex-end;
+  height: 10px;
+}
+
+.vol-bar {
+  width: 3px;
+  background: rgba(16, 185, 129, 0.4);
+  border-radius: 1px;
+}
+
+.vol-bar.active {
+  background: var(--accent-emerald);
+}
+
+/* Comp. Density Table Cell */
+.comp-density-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comp-track {
+  width: 48px;
+  height: 5px;
+  background: #272730;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.comp-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.comp-val {
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+}
+
+/* SERP Features Icons Group */
+.serp-features-group {
+  display: flex;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.serp-icon {
+  width: 20px;
+  height: 20px;
+  background: #272730;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: help;
+}
+
+.serp-icon:hover {
+  color: #ffffff;
+  background: #3f3f4e;
+}
+
+/* SEMrush Data Table Enhancements */
+.semrush-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.semrush-table th {
+  background: #141418;
+  color: #a1a1aa;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.semrush-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #202027;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.semrush-table tr:hover td {
+  background: #1d1d23;
+}
+
+.query-cell {
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-icon-btn {
+  background: transparent;
+  border: none;
+  color: #5c5c6d;
+  cursor: pointer;
+  font-size: 12px;
+  transition: var(--transition);
+}
+
+.copy-icon-btn:hover {
+  color: #ffffff;
+}
+
+/* SEMrush Card Grid */
+.semrush-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.semrush-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: var(--transition);
+}
+
+.semrush-card:hover {
+  border-color: rgba(255, 100, 45, 0.4);
+  background: var(--bg-card-hover);
+  transform: translateY(-1px);
+}
+
+.semrush-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.semrush-card-query {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+.semrush-card-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  gap: 8px;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-box .label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.metric-box .val {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: #ffffff;
+}
+
+.semrush-card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+

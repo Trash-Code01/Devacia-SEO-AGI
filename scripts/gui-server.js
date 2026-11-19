@@ -119,7 +119,6 @@ function serveStaticFile(req, res, filePath) {
 
 export function startGuiServer(options = {}) {
   const port = options.port || parseInt(process.env.GUI_PORT, 10) || 3333;
-  const host = options.host || '127.0.0.1';
   const open = options.open !== false;
 
   const server = http.createServer(async (req, res) => {
@@ -286,12 +285,27 @@ export function startGuiServer(options = {}) {
     }
   });
 
-  server.listen(port, host, () => {
-    const urlStr = `http://${host === '127.0.0.1' ? 'localhost' : host}:${port}`;
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      if (!options.port && port < 3340) {
+        port++;
+        console.warn(`[Notice] Port in use, shifting to http://localhost:${port}...`);
+        setTimeout(() => server.listen(port), 200);
+      } else {
+        console.error(`\n[Error] Port ${port} is already in use by another process.`);
+      }
+    } else {
+      console.error('[Server Error]', err);
+    }
+  });
+
+  server.listen(port, () => {
+    const urlStr = `http://localhost:${port}`;
     console.log(`\n================================================================`);
     console.log(`  🦅 DEVACIA SEO AGI — INTERACTIVE WEB STUDIO`);
     console.log(`================================================================`);
     console.log(`  ➜ Local Studio:    ${urlStr}`);
+    console.log(`  ➜ IPv4 Access:     http://127.0.0.1:${port}`);
     console.log(`  ➜ REST API:        ${urlStr}/api/status`);
     console.log(`  ➜ Mode:            Dual-Engine (CLI + Web GUI)`);
     console.log(`================================================================\n`);

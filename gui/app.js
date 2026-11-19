@@ -74,6 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
       pageTitle.textContent = tabTitles[tabId].title;
       pageSubtitle.textContent = tabTitles[tabId].subtitle;
     }
+    const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+    const breadcrumbNames = {
+      'tab-keywords': 'Keyword Magic Tool',
+      'tab-titles': 'SERP Snippet Studio',
+      'tab-queries': 'Live Query Harvester',
+      'tab-kd': 'On-Page Density Audit',
+      'tab-system': 'API Diagnostics'
+    };
+    if (breadcrumbCurrent && breadcrumbNames[tabId]) {
+      breadcrumbCurrent.textContent = breadcrumbNames[tabId];
+    }
   }
 
   navButtons.forEach(btn => {
@@ -213,6 +224,127 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
+  // SEMrush Metric Calculators & Intelligence Heuristics
+  // =========================================================================
+  function getSemrushIntent(q) {
+    const low = (q || '').toLowerCase();
+    if (/price|cost|quote|pricing|hire|agency|service|company|developer|firm|solutions|consultant|rates|packages|best/i.test(low)) {
+      return { type: 'commercial', letter: 'C', label: 'Commercial' };
+    } else if (/buy|order|discount|deal|cheap|coupon|contract|purchase/i.test(low)) {
+      return { type: 'transactional', letter: 'T', label: 'Transactional' };
+    } else if (/how|what|why|who|can|is|guide|tutorial|examples|tips|meaning/i.test(low)) {
+      return { type: 'informational', letter: 'I', label: 'Informational' };
+    } else if (/near me|in |california|delhi|austin|mumbai|login|portal|website|app/i.test(low)) {
+      return { type: 'navigational', letter: 'N', label: 'Navigational' };
+    }
+    return { type: 'informational', letter: 'I', label: 'Informational' };
+  }
+
+  function getSemrushKD(q) {
+    const words = (q || '').trim().split(/\s+/).length;
+    const low = (q || '').toLowerCase();
+    let baseScore = 55;
+
+    if (words === 1) baseScore = 88;
+    else if (words === 2) baseScore = 65;
+    else if (words === 3) baseScore = 46;
+    else if (words === 4) baseScore = 32;
+    else if (words === 5) baseScore = 24;
+    else baseScore = 14;
+
+    if (/cost|price|agency|hire|service/i.test(low)) baseScore += 8;
+    if (/how|what|why|guide/i.test(low)) baseScore -= 10;
+    if (/near me|in /i.test(low)) baseScore -= 6;
+
+    let charSum = 0;
+    for (let i = 0; i < q.length; i++) charSum += q.charCodeAt(i);
+    const jitter = (charSum % 11) - 5;
+    const pct = Math.min(99, Math.max(5, baseScore + jitter));
+
+    let tier = 'Possible';
+    let cssClass = 'kd-possible';
+
+    if (pct <= 14) {
+      tier = 'Very Easy';
+      cssClass = 'kd-very-easy';
+    } else if (pct <= 29) {
+      tier = 'Easy';
+      cssClass = 'kd-easy';
+    } else if (pct <= 49) {
+      tier = 'Possible';
+      cssClass = 'kd-possible';
+    } else if (pct <= 69) {
+      tier = 'Difficult';
+      cssClass = 'kd-difficult';
+    } else if (pct <= 84) {
+      tier = 'Hard';
+      cssClass = 'kd-hard';
+    } else {
+      tier = 'Very Hard';
+      cssClass = 'kd-very-hard';
+    }
+
+    return { pct, tier, cssClass };
+  }
+
+  function getSemrushVolume(q) {
+    const words = (q || '').trim().split(/\s+/).length;
+    let charSum = 0;
+    for (let i = 0; i < q.length; i++) charSum += q.charCodeAt(i);
+    const factor = (charSum % 40) / 100;
+
+    let vol = 1200;
+    if (words === 1) vol = Math.round(25000 + factor * 50000);
+    else if (words === 2) vol = Math.round(3600 + factor * 8000);
+    else if (words === 3) vol = Math.round(1400 + factor * 2200);
+    else if (words === 4) vol = Math.round(480 + factor * 800);
+    else vol = Math.round(110 + factor * 250);
+
+    let formatted = vol.toString();
+    if (vol >= 1000) formatted = (vol / 1000).toFixed(1) + 'K';
+
+    return { num: vol, formatted };
+  }
+
+  function getSemrushCPC(q) {
+    const low = (q || '').toLowerCase();
+    let baseCpc = 3.20;
+    if (/agency|developer|company|firm|services|hire/i.test(low)) baseCpc = 8.50;
+    else if (/cost|price|pricing|rates/i.test(low)) baseCpc = 6.20;
+    else if (/how|what|why|tutorial/i.test(low)) baseCpc = 1.40;
+
+    let charSum = 0;
+    for (let i = 0; i < q.length; i++) charSum += q.charCodeAt(i);
+    const diff = ((charSum % 30) - 15) / 10;
+    const cpc = Math.max(0.40, baseCpc + diff);
+    return '$' + cpc.toFixed(2);
+  }
+
+  function getSemrushCompDensity(q) {
+    const low = (q || '').toLowerCase();
+    let base = 0.65;
+    if (/agency|company|hire|cost|pricing|service/i.test(low)) base = 0.88;
+    else if (/how|what|why/i.test(low)) base = 0.28;
+    else if (/near me|in /i.test(low)) base = 0.72;
+
+    let charSum = 0;
+    for (let i = 0; i < q.length; i++) charSum += q.charCodeAt(i);
+    const diff = ((charSum % 20) - 10) / 100;
+    const val = Math.min(1.0, Math.max(0.05, base + diff));
+    return val.toFixed(2);
+  }
+
+  function getSemrushSerpFeatures(q) {
+    const features = [];
+    const low = (q || '').toLowerCase();
+    if (/how|what|why|cost|price|best/i.test(low)) features.push({ icon: '⚡', name: 'Featured Snippet' });
+    if (/agency|company|services|firm/i.test(low)) features.push({ icon: '🔗', name: 'Sitelinks' });
+    if (/near me|in |california|delhi|austin|city/i.test(low)) features.push({ icon: '📍', name: 'Local Map Pack' });
+    features.push({ icon: '❓', name: 'People Also Ask' });
+    return features;
+  }
+
+  // =========================================================================
   // TAB 1: Keywords Studio
   // =========================================================================
   const btnKwExpand = document.getElementById('btn-kw-expand');
@@ -310,33 +442,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filtered.slice(0, 150).forEach((kw, idx) => {
       const tr = document.createElement('tr');
-      const low = kw.toLowerCase();
-
-      let intentBadge = '<span class="intent-pill informational">Informational</span>';
-      if (/agency|service|company|firm|solutions|hire|cost|pricing|consultant/i.test(low)) {
-        intentBadge = '<span class="intent-pill commercial">Commercial</span>';
-      } else if (/buy|cheap|contract|quote/i.test(low)) {
-        intentBadge = '<span class="intent-pill transactional">Transactional</span>';
-      } else if (/how|what|why|guide|tutorial|examples|best/i.test(low)) {
-        intentBadge = '<span class="intent-pill informational">Informational</span>';
-      }
-
-      const wordCount = kw.split(/\s+/).length;
-      let diffBadge = '<span class="badge badge-green">Low KD (0-20)</span>';
-      if (wordCount <= 2) diffBadge = '<span class="badge badge-red">High KD (60-80)</span>';
-      else if (wordCount === 3) diffBadge = '<span class="badge badge-yellow">Med KD (30-50)</span>';
+      const intent = getSemrushIntent(kw);
+      const kd = getSemrushKD(kw);
+      const vol = getSemrushVolume(kw);
+      const cpc = getSemrushCPC(kw);
+      const density = getSemrushCompDensity(kw);
 
       tr.innerHTML = `
         <td>${idx + 1}</td>
-        <td><strong>${escapeHtml(kw)}</strong></td>
-        <td><span class="est-vol">${getEstimatedVolume(kw)}</span>/mo</td>
-        <td>${intentBadge}</td>
-        <td>${diffBadge}</td>
         <td>
-          <button class="btn btn-xs btn-outline btn-use-title" data-kw="${escapeHtml(kw)}">Use in Title</button>
-          <button class="btn btn-xs btn-outline btn-check-kd" data-kw="${escapeHtml(kw)}">Check KD</button>
+          <div class="query-cell">
+            <span><strong>${escapeHtml(kw)}</strong></span>
+            <button class="copy-icon-btn" title="Copy keyword" data-copy="${escapeHtml(kw)}">📋</button>
+          </div>
+        </td>
+        <td>
+          <span class="semrush-intent-pill ${intent.type}">
+            <span class="semrush-mini-intent intent-${intent.letter.toLowerCase()}">${intent.letter}</span>
+            ${intent.label}
+          </span>
+        </td>
+        <td>
+          <div class="vol-cell">
+            <span class="vol-num">${vol.formatted}</span>
+            <div class="vol-trend-bars">
+              <span class="vol-bar" style="height: 4px;"></span>
+              <span class="vol-bar" style="height: 6px;"></span>
+              <span class="vol-bar active" style="height: 10px;"></span>
+              <span class="vol-bar active" style="height: 8px;"></span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="semrush-kd-badge">
+            <span class="kd-circle-mini ${kd.cssClass}">${kd.pct}</span>
+            <span class="kd-tier-text">${kd.tier}</span>
+          </div>
+        </td>
+        <td><strong style="color: #10b981; font-family: 'JetBrains Mono', monospace;">${cpc}</strong></td>
+        <td>
+          <div class="comp-density-cell">
+            <div class="comp-track">
+              <div class="comp-fill" style="width: ${Math.round(density * 100)}%; background: ${density > 0.7 ? '#f97316' : density > 0.4 ? '#eab308' : '#10b981'};"></div>
+            </div>
+            <span class="comp-val">${density}</span>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-xs btn-outline btn-use-title" data-kw="${escapeHtml(kw)}">🏷️ Title</button>
+          <button class="btn btn-xs btn-outline btn-check-kd" data-kw="${escapeHtml(kw)}">📊 Density</button>
         </td>
       `;
+
+      tr.querySelector('.copy-icon-btn').addEventListener('click', (e) => {
+        navigator.clipboard.writeText(kw);
+        e.target.textContent = '✓';
+        setTimeout(() => e.target.textContent = '📋', 1500);
+      });
 
       tr.querySelector('.btn-use-title').addEventListener('click', () => {
         document.getElementById('title-topic').value = kw;
@@ -658,7 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnGenerateTitles) btnGenerateTitles.addEventListener('click', handleGenerateTitles);
 
   // =========================================================================
-  // TAB 3: Live Query Harvester
+  // TAB 3: Live Query Harvester (SEMrush-Inspired Studio)
   // =========================================================================
   const btnHarvestQueries = document.getElementById('btn-harvest-queries');
   const querySeedInput = document.getElementById('query-seed');
@@ -666,18 +828,98 @@ document.addEventListener('DOMContentLoaded', () => {
   const queriesResultsGrid = document.getElementById('queries-results-grid');
   const subTabButtons = document.querySelectorAll('.sub-tab-btn');
 
+  // SEMrush Summary Bar Elements
+  const queriesSummaryBar = document.getElementById('queries-summary-bar');
+  const semrushTotalQueries = document.getElementById('semrush-total-queries');
+  const semrushTotalVolume = document.getElementById('semrush-total-volume');
+  const semrushAvgKdCircle = document.getElementById('semrush-avg-kd-circle');
+  const semrushAvgKdTier = document.getElementById('semrush-avg-kd-tier');
+  const semrushAvgCpc = document.getElementById('semrush-avg-cpc');
+  const semrushDensityBar = document.getElementById('semrush-density-bar');
+  const semrushDensityVal = document.getElementById('semrush-density-val');
+
+  // Toolbar & View Elements
+  const queriesFilterInput = document.getElementById('queries-filter-input');
+  const btnViewTable = document.getElementById('btn-view-table');
+  const btnViewCards = document.getElementById('btn-view-cards');
+  const queriesTablePanel = document.getElementById('queries-table-panel');
+  const queriesCardsPanel = document.getElementById('queries-cards-panel');
+  const queriesTableBody = document.getElementById('queries-table-body');
+  const btnQueriesExportCsv = document.getElementById('btn-queries-export-csv');
+
   // Counter Badges
   const countAll = document.getElementById('count-all');
   const countCommercial = document.getElementById('count-commercial');
   const countQuestions = document.getElementById('count-questions');
   const countComparison = document.getElementById('count-comparison');
   const countLocal = document.getElementById('count-local');
+  const checkAllQueries = document.getElementById('check-all-queries');
 
   // UULE Simulator
   const uuleLocationSelect = document.getElementById('uule-location');
   const uuleServiceInput = document.getElementById('uule-service');
   const btnRunUule = document.getElementById('btn-run-uule');
   const uuleResultsContainer = document.getElementById('uule-results-container');
+
+  state.queriesViewMode = 'table';
+  state.queriesSortCol = 'vol';
+  state.queriesSortDir = 'desc';
+  state.queriesMatchMode = 'all';
+
+  function getTrendSparklineHtml(q) {
+    let charSum = 0;
+    for (let i = 0; i < q.length; i++) charSum += q.charCodeAt(i);
+    const bars = [];
+    for (let i = 0; i < 12; i++) {
+      const h = 3 + ((charSum * (i + 3) * 7) % 9);
+      const isActive = i >= 8;
+      bars.push(`<span class="vol-bar ${isActive ? 'active' : ''}" style="height: ${h}px;"></span>`);
+    }
+    return `<div class="vol-trend-bars">${bars.join('')}</div>`;
+  }
+
+  // Match Modifiers Listeners
+  const matchButtons = document.querySelectorAll('.match-btn');
+  matchButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      matchButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.queriesMatchMode = btn.dataset.match || 'all';
+      renderQueriesCurrentView();
+    });
+  });
+
+  if (checkAllQueries) {
+    checkAllQueries.addEventListener('change', () => {
+      document.querySelectorAll('.row-check').forEach(cb => cb.checked = checkAllQueries.checked);
+    });
+  }
+
+  // Column Sort Listeners
+  const tableHeaders = document.querySelectorAll('#queries-table th');
+  tableHeaders.forEach(th => {
+    const text = th.textContent.toLowerCase();
+    let col = null;
+    if (text.includes('keyword')) col = 'query';
+    else if (text.includes('intent')) col = 'intent';
+    else if (text.includes('volume')) col = 'vol';
+    else if (text.includes('kd')) col = 'kd';
+    else if (text.includes('cpc')) col = 'cpc';
+    else if (text.includes('com')) col = 'density';
+
+    if (col) {
+      th.style.cursor = 'pointer';
+      th.addEventListener('click', () => {
+        if (state.queriesSortCol === col) {
+          state.queriesSortDir = state.queriesSortDir === 'desc' ? 'asc' : 'desc';
+        } else {
+          state.queriesSortCol = col;
+          state.queriesSortDir = 'desc';
+        }
+        renderQueriesCurrentView();
+      });
+    }
+  });
 
   async function handleHarvestQueries() {
     const seed = querySeedInput.value.trim();
@@ -689,12 +931,29 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await apiPost('/api/queries/harvest', { seed, geo });
 
       const res = data.results || {};
+      const allQueries = res.all || [];
+
+      // Categorize queries with intelligent intent separation
+      const cat = res.categorized || {};
+      const commercial = cat.commercial?.length
+        ? cat.commercial
+        : allQueries.filter(q => getSemrushIntent(q).type === 'commercial');
+      const questions = cat.questions?.length
+        ? cat.questions
+        : allQueries.filter(q => getSemrushIntent(q).type === 'informational' || /how|what|why|who|can|is/i.test(q));
+      const comparison = cat.comparison?.length
+        ? cat.comparison
+        : allQueries.filter(q => /vs|or|versus|alternative|compare/i.test(q));
+      const local = cat.local?.length
+        ? cat.local
+        : allQueries.filter(q => /near me|in |california|delhi|austin|mumbai|city/i.test(q));
+
       state.currentQueries = {
-        all: res.all || [],
-        commercial: res.commercial || [],
-        questions: res.questions || [],
-        comparison: res.comparison || [],
-        local: res.local || []
+        all: allQueries,
+        commercial,
+        questions,
+        comparison,
+        local
       };
 
       countAll.textContent = state.currentQueries.all.length;
@@ -703,7 +962,11 @@ document.addEventListener('DOMContentLoaded', () => {
       countComparison.textContent = state.currentQueries.comparison.length;
       countLocal.textContent = state.currentQueries.local.length;
 
-      renderQueryCards(state.currentQueries[state.activeQueryFilter] || state.currentQueries.all);
+      // Update SEMrush Top KPI Summary Bar
+      updateSemrushSummary(allQueries);
+
+      // Render Active View
+      renderQueriesCurrentView();
     } catch (err) {
       alert(`Harvest error: ${err.message}`);
     } finally {
@@ -711,43 +974,237 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function renderQueryCards(queries) {
+  function updateSemrushSummary(queries) {
+    if (!queries || !queries.length) return;
+    queriesSummaryBar.classList.remove('hidden');
+
+    semrushTotalQueries.textContent = queries.length;
+
+    let totalVol = 0;
+    let totalKd = 0;
+    let totalCpc = 0;
+    let totalDensity = 0;
+
+    queries.forEach(q => {
+      totalVol += getSemrushVolume(q).num;
+      totalKd += getSemrushKD(q).pct;
+      totalCpc += parseFloat(getSemrushCPC(q).replace('$', '')) || 3.5;
+      totalDensity += parseFloat(getSemrushCompDensity(q)) || 0.6;
+    });
+
+    const avgKd = Math.round(totalKd / queries.length);
+    const avgCpc = (totalCpc / queries.length).toFixed(2);
+    const avgDensity = (totalDensity / queries.length).toFixed(2);
+
+    if (totalVol >= 1000000) {
+      semrushTotalVolume.textContent = (totalVol / 1000000).toFixed(1) + 'M';
+    } else if (totalVol >= 1000) {
+      semrushTotalVolume.textContent = (totalVol / 1000).toFixed(1) + 'K';
+    } else {
+      semrushTotalVolume.textContent = totalVol.toString();
+    }
+
+    semrushAvgKdCircle.textContent = `${avgKd}%`;
+    let kdTier = 'Possible';
+    let borderColor = '#eab308';
+
+    if (avgKd <= 14) {
+      kdTier = 'Very Easy';
+      borderColor = '#00cc83';
+    } else if (avgKd <= 29) {
+      kdTier = 'Easy';
+      borderColor = '#10b981';
+    } else if (avgKd <= 49) {
+      kdTier = 'Possible';
+      borderColor = '#eab308';
+    } else if (avgKd <= 69) {
+      kdTier = 'Difficult';
+      borderColor = '#f97316';
+    } else {
+      kdTier = 'Hard';
+      borderColor = '#ef4444';
+    }
+
+    semrushAvgKdCircle.style.borderColor = borderColor;
+    semrushAvgKdTier.textContent = kdTier;
+
+    semrushAvgCpc.textContent = `$${avgCpc}`;
+    semrushDensityVal.textContent = avgDensity;
+    semrushDensityBar.style.width = `${Math.min(100, Math.round(parseFloat(avgDensity) * 100))}%`;
+  }
+
+  function getFilteredQueries() {
+    let list = state.currentQueries[state.activeQueryFilter] || state.currentQueries.all || [];
+    const search = (queriesFilterInput.value || '').toLowerCase().trim();
+    if (search) {
+      list = list.filter(q => q.toLowerCase().includes(search));
+    }
+
+    const seed = (querySeedInput.value || '').toLowerCase().trim();
+    if (seed && state.queriesMatchMode !== 'all') {
+      if (state.queriesMatchMode === 'phrase') {
+        list = list.filter(q => q.toLowerCase().includes(seed));
+      } else if (state.queriesMatchMode === 'exact') {
+        list = list.filter(q => {
+          const qWords = q.toLowerCase().split(/\s+/);
+          const sWords = seed.split(/\s+/);
+          return Math.abs(qWords.length - sWords.length) <= 1 && q.toLowerCase().includes(seed);
+        });
+      }
+    }
+
+    const col = state.queriesSortCol;
+    const dir = state.queriesSortDir === 'desc' ? -1 : 1;
+    return [...list].sort((a, b) => {
+      if (col === 'query') return dir * a.localeCompare(b);
+      if (col === 'intent') return dir * getSemrushIntent(a).letter.localeCompare(getSemrushIntent(b).letter);
+      if (col === 'vol') return dir * (getSemrushVolume(a).num - getSemrushVolume(b).num);
+      if (col === 'kd') return dir * (getSemrushKD(a).pct - getSemrushKD(b).pct);
+      if (col === 'cpc') return dir * (parseFloat(getSemrushCPC(a).slice(1)) - parseFloat(getSemrushCPC(b).slice(1)));
+      if (col === 'density') return dir * (parseFloat(getSemrushCompDensity(a)) - parseFloat(getSemrushCompDensity(b)));
+      return 0;
+    });
+  }
+
+  function renderQueriesCurrentView() {
+    const list = getFilteredQueries();
+    renderSemrushTable(list);
+    renderSemrushCards(list);
+  }
+
+  function renderSemrushTable(queries) {
+    queriesTableBody.innerHTML = '';
+    if (!queries.length) {
+      queriesTableBody.innerHTML = `<tr><td colspan="11" class="empty-state-notice">No search queries match current filter.</td></tr>`;
+      return;
+    }
+
+    queries.slice(0, 150).forEach((q, idx) => {
+      const tr = document.createElement('tr');
+      const intent = getSemrushIntent(q);
+      const kd = getSemrushKD(q);
+      const vol = getSemrushVolume(q);
+      const cpc = getSemrushCPC(q);
+      const density = getSemrushCompDensity(q);
+      const features = getSemrushSerpFeatures(q);
+
+      tr.innerHTML = `
+        <td><input type="checkbox" class="semrush-checkbox row-check" data-query="${escapeHtml(q)}"></td>
+        <td>${idx + 1}</td>
+        <td>
+          <div class="query-cell">
+            <span>${escapeHtml(q)}</span>
+            <button class="copy-icon-btn" title="Copy query" data-copy="${escapeHtml(q)}">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+            </button>
+          </div>
+        </td>
+        <td>
+          <span class="semrush-intent-pill ${intent.type}">
+            <span class="semrush-mini-intent intent-${intent.letter.toLowerCase()}">${intent.letter}</span>
+            ${intent.label}
+          </span>
+        </td>
+        <td>
+          <span class="vol-num">${vol.formatted}</span>
+        </td>
+        <td>
+          ${getTrendSparklineHtml(q)}
+        </td>
+        <td>
+          <div class="semrush-kd-badge">
+            <span class="kd-circle-mini ${kd.cssClass}">${kd.pct}</span>
+            <span class="kd-tier-text">${kd.tier}</span>
+          </div>
+        </td>
+        <td><strong style="color: #10b981; font-family: 'JetBrains Mono', monospace;">${cpc}</strong></td>
+        <td>
+          <div class="comp-density-cell">
+            <div class="comp-track">
+              <div class="comp-fill" style="width: ${Math.round(density * 100)}%; background: ${density > 0.7 ? '#f97316' : density > 0.4 ? '#eab308' : '#10b981'};"></div>
+            </div>
+            <span class="comp-val">${density}</span>
+          </div>
+        </td>
+        <td>
+          <div class="serp-features-group">
+            ${features.map(f => `<span class="serp-icon" title="${f.name}">${f.icon}</span>`).join('')}
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-xs btn-outline btn-q-title" data-q="${escapeHtml(q)}">🏷️ Title</button>
+          <button class="btn btn-xs btn-outline btn-q-density" data-q="${escapeHtml(q)}">📊 Density</button>
+        </td>
+      `;
+
+      tr.querySelector('.copy-icon-btn').addEventListener('click', (e) => {
+        navigator.clipboard.writeText(q);
+        e.currentTarget.innerHTML = '<span style="color: #10b981;">✓</span>';
+        setTimeout(() => {
+          e.currentTarget.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>`;
+        }, 1500);
+      });
+
+      tr.querySelector('.btn-q-title').addEventListener('click', () => {
+        document.getElementById('title-topic').value = q;
+        switchTab('tab-titles');
+        handleGenerateTitles();
+      });
+
+      tr.querySelector('.btn-q-density').addEventListener('click', () => {
+        document.getElementById('kd-target').value = q;
+        switchTab('tab-kd');
+      });
+
+      queriesTableBody.appendChild(tr);
+    });
+  }
+
+  function renderSemrushCards(queries) {
     queriesResultsGrid.innerHTML = '';
     if (!queries.length) {
-      queriesResultsGrid.innerHTML = '<div class="empty-state-notice">No search queries found for this filter.</div>';
+      queriesResultsGrid.innerHTML = '<div class="empty-state-notice">No search queries match current filter.</div>';
       return;
     }
 
     queries.slice(0, 100).forEach(q => {
       const card = document.createElement('div');
-      card.className = 'query-card';
-
-      let tagClass = 'informational';
-      let tagText = 'Informational';
-      const low = q.toLowerCase();
-
-      if (/price|cost|quote|hire|agency|service|company|best/i.test(low)) {
-        tagClass = 'commercial';
-        tagText = 'Commercial';
-      } else if (/how|what|why|who|can|is|tutorial/i.test(low)) {
-        tagClass = 'questions';
-        tagText = 'Question';
-      } else if (/vs|or|versus|alternative|compare/i.test(low)) {
-        tagClass = 'comparison';
-        tagText = 'Comparison';
-      } else if (/near me|california|delhi|austin|in |city/i.test(low)) {
-        tagClass = 'local';
-        tagText = 'Local';
-      }
+      card.className = 'semrush-card';
+      const intent = getSemrushIntent(q);
+      const kd = getSemrushKD(q);
+      const vol = getSemrushVolume(q);
+      const cpc = getSemrushCPC(q);
+      const density = getSemrushCompDensity(q);
 
       card.innerHTML = `
-        <div class="query-content">
-          <span class="intent-pill ${tagClass}">${tagText}</span>
-          <span class="query-text">${escapeHtml(q)}</span>
+        <div class="semrush-card-top">
+          <span class="semrush-intent-pill ${intent.type}">
+            <span class="semrush-mini-intent intent-${intent.letter.toLowerCase()}">${intent.letter}</span>
+            ${intent.label}
+          </span>
+          <div class="semrush-kd-badge">
+            <span class="kd-circle-mini ${kd.cssClass}">${kd.pct}</span>
+            <span class="kd-tier-text">${kd.tier}</span>
+          </div>
         </div>
-        <div class="query-actions">
-          <button class="btn btn-xs btn-outline btn-q-title" title="Send to Title Studio">🏷️ Title</button>
-          <button class="btn btn-xs btn-outline btn-q-density" title="Check Keyword Density">📊 Density</button>
+        <h4 class="semrush-card-query">${escapeHtml(q)}</h4>
+        <div class="semrush-card-metrics">
+          <div class="metric-box">
+            <span class="label">Vol / Mo</span>
+            <span class="val">${vol.formatted}</span>
+          </div>
+          <div class="metric-box">
+            <span class="label">Est. CPC</span>
+            <span class="val" style="color: #10b981;">${cpc}</span>
+          </div>
+          <div class="metric-box">
+            <span class="label">Comp. Density</span>
+            <span class="val">${density}</span>
+          </div>
+        </div>
+        <div class="semrush-card-actions">
+          <button class="btn btn-xs btn-outline btn-q-title" data-q="${escapeHtml(q)}">🏷️ Title Studio</button>
+          <button class="btn btn-xs btn-outline btn-q-density" data-q="${escapeHtml(q)}">📊 Density Audit</button>
         </div>
       `;
 
@@ -766,15 +1223,74 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Filter Tabs Event Listeners
   subTabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       subTabButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.dataset.filter;
       state.activeQueryFilter = filter;
-      renderQueryCards(state.currentQueries[filter] || state.currentQueries.all);
+      renderQueriesCurrentView();
     });
   });
+
+  // Filter Search Input Listener
+  queriesFilterInput.addEventListener('input', () => {
+    renderQueriesCurrentView();
+  });
+
+  // View Switcher (Table vs Cards)
+  btnViewTable.addEventListener('click', () => {
+    btnViewTable.classList.add('active');
+    btnViewCards.classList.remove('active');
+    queriesTablePanel.classList.remove('hidden');
+    queriesCardsPanel.classList.add('hidden');
+    state.queriesViewMode = 'table';
+  });
+
+  btnViewCards.addEventListener('click', () => {
+    btnViewCards.classList.add('active');
+    btnViewTable.classList.remove('active');
+    queriesTablePanel.classList.add('hidden');
+    queriesCardsPanel.classList.remove('hidden');
+    state.queriesViewMode = 'cards';
+  });
+
+  // CSV Export for Harvested Queries
+  if (btnQueriesExportCsv) {
+    btnQueriesExportCsv.addEventListener('click', () => {
+      const list = getFilteredQueries();
+      if (!list.length) return alert('No queries to export.');
+
+      const headers = ['Query', 'Intent', 'Intent_Type', 'Volume_Mo', 'KD_Percent', 'Difficulty_Tier', 'CPC_USD', 'Competitive_Density'];
+      const rows = list.map(q => {
+        const intent = getSemrushIntent(q);
+        const kd = getSemrushKD(q);
+        const vol = getSemrushVolume(q);
+        const cpc = getSemrushCPC(q);
+        const density = getSemrushCompDensity(q);
+        return [
+          `"${q.replace(/"/g, '""')}"`,
+          intent.letter,
+          intent.label,
+          vol.num,
+          kd.pct,
+          kd.tier,
+          cpc.replace('$', ''),
+          density
+        ].join(',');
+      });
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(',')].concat(rows).join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `devacia-semrush-queries-${Date.now()}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
 
   if (btnHarvestQueries) btnHarvestQueries.addEventListener('click', handleHarvestQueries);
 

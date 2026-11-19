@@ -14,33 +14,47 @@
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="brand-header">
-        <div class="brand-logo">🦅</div>
+        <div class="brand-logo semrush-logo-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#ff642d">
+            <path d="M12.8 2.2c-.3-.3-.8-.3-1 0-2.8 2.9-4.8 6.4-4.8 10.3 0 4.4 3.6 8 8 8s8-3.6 8-8c0-3.6-2-6.9-4.8-9.8-.3-.3-.8-.3-1 0-.3.3-.2.8.1 1.1 2.5 2.5 4.1 5.4 4.1 8.7 0 3.5-2.9 6.4-6.4 6.4s-6.4-2.9-6.4-6.4c0-3.4 1.7-6.5 4.1-9.2.3-.3.2-.8-.1-1.1zm-1.6 6.3c-.3-.3-.8-.3-1 0-1.8 1.9-3.2 4.3-3.2 6.9 0 3 2.5 5.5 5.5 5.5s5.5-2.5 5.5-5.5c0-2.5-1.3-4.8-3.2-6.8-.3-.3-.8-.3-1 0-.3.3-.2.8.1 1.1 1.6 1.7 2.6 3.6 2.6 5.7 0 2.2-1.8 4-4 4s-4-1.8-4-4c0-2.1 1.1-4.2 2.6-5.8.4-.3.3-.8 0-1.1z"/>
+          </svg>
+        </div>
         <div class="brand-text">
           <h2>DEVACIA</h2>
-          <span>SEO AGI STUDIO</span>
+          <span class="semrush-subbrand">SEO AGI • SEMRUSH ENGINE</span>
         </div>
       </div>
 
       <nav class="nav-menu">
         <button class="nav-btn active" data-tab="tab-keywords">
-          <span class="icon">🔑</span>
-          <span class="label">Keywords Studio</span>
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg>
+          </span>
+          <span class="label">Keyword Magic Tool</span>
         </button>
         <button class="nav-btn" data-tab="tab-titles">
-          <span class="icon">🏷️</span>
-          <span class="label">Title & SERP Studio</span>
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+          </span>
+          <span class="label">SERP Snippet Studio</span>
         </button>
         <button class="nav-btn" data-tab="tab-queries">
-          <span class="icon">🔍</span>
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+          </span>
           <span class="label">Live Query Harvester</span>
         </button>
         <button class="nav-btn" data-tab="tab-kd">
-          <span class="icon">📊</span>
-          <span class="label">Keyword Density</span>
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          </span>
+          <span class="label">On-Page Density Audit</span>
         </button>
         <button class="nav-btn" data-tab="tab-system">
-          <span class="icon">🛡️</span>
-          <span class="label">Subsystem Health</span>
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </span>
+          <span class="label">API Diagnostics</span>
         </button>
       </nav>
 
@@ -58,12 +72,16 @@
       <!-- Top Header Bar -->
       <header class="top-bar">
         <div class="header-title">
+          <div class="semrush-breadcrumb">SEO &gt; Keyword Research &gt; <strong id="breadcrumb-current">Keyword Magic Tool</strong></div>
           <h1 id="page-title">Keyword Intelligence & Topical Clustering</h1>
           <p id="page-subtitle">Deep Autocomplete Expansion, Topical Authority Silos & Rank #1 Blueprint Generation</p>
         </div>
         <div class="header-actions">
-          <span class="version-badge">v1.0.0 AGI</span>
-          <button class="btn btn-secondary btn-sm" id="btn-refresh-status">↻ Status</button>
+          <span class="version-badge semrush-version-badge">v1.0.0 SEMRUSH AGI</span>
+          <button class="btn btn-secondary btn-sm" id="btn-refresh-status">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            <span>Status</span>
+          </button>
         </div>
       </header>
 
@@ -92,8 +110,14 @@
               </label>
             </div>
             <div class="form-group btn-group-align">
-              <button class="btn btn-primary" id="btn-kw-expand">⚡ Deep Expansion</button>
-              <button class="btn btn-secondary" id="btn-kw-cluster">📦 Build Clusters</button>
+              <button class="btn semrush-btn-primary" id="btn-kw-expand">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                <span>Deep Expansion</span>
+              </button>
+              <button class="btn btn-secondary" id="btn-kw-cluster">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                <span>Build Clusters</span>
+              </button>
             </div>
           </div>
         </div>
@@ -106,22 +130,30 @@
           </div>
           <div class="toolbar-actions">
             <input type="text" id="kw-table-filter" placeholder="Filter keywords..." class="search-input">
-            <button class="btn btn-sm btn-outline" id="btn-kw-export-csv">📥 Export CSV</button>
-            <button class="btn btn-sm btn-emerald" id="btn-kw-generate-blueprint">📄 Rank #1 Blueprint</button>
+            <button class="btn btn-sm btn-outline" id="btn-kw-export-csv">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Export CSV</span>
+            </button>
+            <button class="btn btn-sm semrush-btn-accent" id="btn-kw-generate-blueprint">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span>Rank #1 Blueprint</span>
+            </button>
           </div>
         </div>
 
         <!-- Table View -->
         <div class="panel card table-container hidden" id="kw-results-panel">
-          <table class="data-table" id="kw-table">
+          <table class="data-table semrush-table" id="kw-table">
             <thead>
               <tr>
-                <th>#</th>
+                <th style="width: 40px;">#</th>
                 <th>Discovered Keyword</th>
-                <th>Est. Volume</th>
-                <th>Intent</th>
-                <th>Difficulty Tier</th>
-                <th>Action</th>
+                <th style="width: 90px;">Intent</th>
+                <th style="width: 110px;">Est. Volume</th>
+                <th style="width: 130px;">KD %</th>
+                <th style="width: 90px;">CPC (USD)</th>
+                <th style="width: 110px;">Comp. Density</th>
+                <th style="width: 140px;">Action</th>
               </tr>
             </thead>
             <tbody id="kw-table-body">
@@ -141,7 +173,7 @@
         <div class="grid-2-col">
           <!-- Input & Controls -->
           <div class="panel card">
-            <h3>🏷️ Title & Snippet Engineering</h3>
+            <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg> <span>Title & Snippet Engineering</span></h3>
             <p class="section-desc">Generate mathematically verified Title Tags (&lt; 58ch, &lt; 580px) and Meta Descriptions (&lt; 155ch) with zero SERP truncation.</p>
 
             <div class="form-group mt-3">
@@ -171,7 +203,10 @@
             </div>
 
             <div class="btn-group-row mt-3">
-              <button class="btn btn-primary" id="btn-generate-titles">✨ Generate Verified Titles</button>
+              <button class="btn semrush-btn-primary" id="btn-generate-titles">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                <span>Generate Verified Titles</span>
+              </button>
             </div>
 
             <div class="candidates-list mt-4" id="title-candidates-list">
@@ -185,7 +220,7 @@
           <!-- Live Google SERP Simulation Card -->
           <div class="panel card serp-simulator-card">
             <div class="serp-header">
-              <h3>🔍 Live Google SERP Simulation</h3>
+              <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> <span>Live Google SERP Simulation</span></h3>
               <div class="device-toggle">
                 <button class="device-btn active" data-device="desktop">Desktop</button>
                 <button class="device-btn" data-device="mobile">Mobile</button>
@@ -271,31 +306,126 @@
               </select>
             </div>
             <div class="form-group btn-group-align">
-              <button class="btn btn-primary" id="btn-harvest-queries">🔍 Harvest Live Queries</button>
+              <button class="btn semrush-search-btn" id="btn-harvest-queries">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>Search</span>
+              </button>
             </div>
+          </div>
+
+          <!-- SEMrush Match Modifiers -->
+          <div class="semrush-match-strip mt-2">
+            <button class="match-btn active" data-match="all">Broad Match</button>
+            <button class="match-btn" data-match="phrase">Phrase Match</button>
+            <button class="match-btn" data-match="exact">Exact Match</button>
+            <button class="match-btn" data-match="related">Related Suggestions</button>
+          </div>
+        </div>
+
+        <!-- SEMrush Top Metrics KPI Bar -->
+        <div class="semrush-summary-bar hidden" id="queries-summary-bar">
+          <div class="semrush-metric-card">
+            <span class="semrush-metric-label">Total Queries</span>
+            <span class="semrush-metric-val" id="semrush-total-queries">0</span>
+            <span class="semrush-metric-sub">Live Autocomplete Harvester</span>
+          </div>
+          <div class="semrush-metric-card">
+            <span class="semrush-metric-label">Estimated Volume</span>
+            <span class="semrush-metric-val" id="semrush-total-volume">0</span>
+            <span class="semrush-metric-sub">Monthly Global Searches</span>
+          </div>
+          <div class="semrush-metric-card">
+            <span class="semrush-metric-label">Average KD% (Difficulty)</span>
+            <div class="semrush-kd-indicator">
+              <span class="semrush-kd-circle" id="semrush-avg-kd-circle">36%</span>
+              <span class="semrush-kd-tier" id="semrush-avg-kd-tier">Possible</span>
+            </div>
+            <span class="semrush-metric-sub">Competitive Barrier to Rank</span>
+          </div>
+          <div class="semrush-metric-card">
+            <span class="semrush-metric-label">Average CPC</span>
+            <span class="semrush-metric-val text-green" id="semrush-avg-cpc">$0.00</span>
+            <span class="semrush-metric-sub">Google Ads Benchmark</span>
+          </div>
+          <div class="semrush-metric-card">
+            <span class="semrush-metric-label">Competitive Density</span>
+            <div class="density-bar-container">
+              <div class="density-bar-track">
+                <div class="density-bar-fill" id="semrush-density-bar" style="width: 65%;"></div>
+              </div>
+              <span class="density-val" id="semrush-density-val">0.65</span>
+            </div>
+            <span class="semrush-metric-sub">Advertiser Competition</span>
           </div>
         </div>
 
         <div class="queries-layout mt-3">
-          <!-- Intent Filter Tabs -->
-          <div class="sub-nav-tabs">
-            <button class="sub-tab-btn active" data-filter="all">All Queries (<span id="count-all">0</span>)</button>
-            <button class="sub-tab-btn" data-filter="commercial">💼 Commercial (<span id="count-commercial">0</span>)</button>
-            <button class="sub-tab-btn" data-filter="questions">❓ Questions (<span id="count-questions">0</span>)</button>
-            <button class="sub-tab-btn" data-filter="comparison">⚖️ Comparison (<span id="count-comparison">0</span>)</button>
-            <button class="sub-tab-btn" data-filter="local">📍 Local Searches (<span id="count-local">0</span>)</button>
+          <!-- Intent Filter Tabs & SEMrush Toolbar -->
+          <div class="queries-toolbar-row">
+            <div class="sub-nav-tabs">
+              <button class="sub-tab-btn active" data-filter="all">All Queries (<span id="count-all">0</span>)</button>
+              <button class="sub-tab-btn" data-filter="commercial"><span class="semrush-mini-intent intent-c">C</span> Commercial (<span id="count-commercial">0</span>)</button>
+              <button class="sub-tab-btn" data-filter="questions"><span class="semrush-mini-intent intent-i">I</span> Questions (<span id="count-questions">0</span>)</button>
+              <button class="sub-tab-btn" data-filter="comparison"><span class="semrush-mini-intent intent-t">T</span> Comparison (<span id="count-comparison">0</span>)</button>
+              <button class="sub-tab-btn" data-filter="local"><span class="semrush-mini-intent intent-n">N</span> Local Searches (<span id="count-local">0</span>)</button>
+            </div>
+
+            <div class="queries-view-controls">
+              <div class="search-input-wrap">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="input-search-svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="queries-filter-input" placeholder="Filter in results..." class="search-input has-icon">
+              </div>
+              <div class="view-switch-btns">
+                <button class="view-btn active" id="btn-view-table" title="SEMrush Table View">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                  <span>Table</span>
+                </button>
+                <button class="view-btn" id="btn-view-cards" title="SEMrush Card Grid">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>
+                  <span>Cards</span>
+                </button>
+              </div>
+              <button class="btn btn-sm btn-outline semrush-export-btn" id="btn-queries-export-csv">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Export</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Queries List Card -->
-          <div class="panel card mt-2">
-            <div class="queries-grid" id="queries-results-grid">
+          <!-- SEMrush Table View Container -->
+          <div class="panel card table-container mt-2" id="queries-table-panel">
+            <table class="data-table semrush-table" id="queries-table">
+              <thead>
+                <tr>
+                  <th style="width: 32px;"><input type="checkbox" id="check-all-queries" class="semrush-checkbox"></th>
+                  <th style="width: 40px;">#</th>
+                  <th>Keyword <span class="sort-icon">↕</span></th>
+                  <th style="width: 85px;">Intent <span class="sort-icon">↕</span></th>
+                  <th style="width: 100px;">Volume <span class="sort-icon">↕</span></th>
+                  <th style="width: 95px;">Trend</th>
+                  <th style="width: 130px;">KD % <span class="sort-icon">↕</span></th>
+                  <th style="width: 90px;">CPC <span class="sort-icon">↕</span></th>
+                  <th style="width: 110px;">Com. <span class="sort-icon">↕</span></th>
+                  <th style="width: 100px;">SF</th>
+                  <th style="width: 150px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="queries-table-body">
+                <tr><td colspan="11" class="empty-state-notice">Click "Search" above to stream real-time Google search suggestions.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SEMrush Card Grid Container (Optional View) -->
+          <div class="panel card mt-2 hidden" id="queries-cards-panel">
+            <div class="queries-grid semrush-grid" id="queries-results-grid">
               <div class="empty-state-notice">Click "Harvest Live Queries" to stream real-time Google search suggestions.</div>
             </div>
           </div>
 
           <!-- Local UULE Simulator Panel -->
           <div class="panel card mt-3">
-            <h3>📍 Hyper-Local Search Behavior & UULE Simulator</h3>
+            <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg> <span>Hyper-Local Search Behavior & UULE Simulator</span></h3>
             <p class="section-desc">Simulate physically standing in any major metro to extract location-specific search habits and zero-truncation Schema.org.</p>
             <div class="form-row mt-2">
               <div class="form-group flex-1">
@@ -316,7 +446,10 @@
                 <input type="text" id="uule-service" value="Custom Software Development">
               </div>
               <div class="form-group btn-group-align">
-                <button class="btn btn-secondary" id="btn-run-uule">⚡ Simulate Local</button>
+                <button class="btn btn-secondary" id="btn-run-uule">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  <span>Simulate Local</span>
+                </button>
               </div>
             </div>
 
@@ -333,7 +466,7 @@
           <!-- Text Input Column -->
           <div class="panel card">
             <div class="kd-mode-header">
-              <h3>📊 Content & Keyword Density Auditor</h3>
+              <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> <span>On-Page Content & Keyword Density Auditor</span></h3>
               <div class="mode-switch">
                 <button class="mode-btn active" data-mode="article">Article / Content Body</button>
                 <button class="mode-btn" data-mode="title">Meta Title Only</button>
@@ -356,14 +489,17 @@
             </div>
 
             <div class="btn-group-row mt-3">
-              <button class="btn btn-primary" id="btn-analyze-kd">🚀 Analyze Density & Prominence</button>
+              <button class="btn semrush-btn-primary" id="btn-analyze-kd">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+                <span>Analyze Density & Prominence</span>
+              </button>
               <button class="btn btn-outline" id="btn-load-sample-text">Load Sample Content</button>
             </div>
           </div>
 
           <!-- Analysis Results Column -->
           <div class="panel card" id="kd-results-column">
-            <h3>📈 Real-Time Density & NLP Analysis</h3>
+            <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> <span>Real-Time Density & NLP Analysis</span></h3>
 
             <!-- Density Speedometer / Meter Gauge -->
             <div class="density-gauge-box mt-3" id="density-gauge-box">
@@ -413,7 +549,7 @@
       <!-- TAB 5: SYSTEM & SUBSYSTEM HEALTH -->
       <section id="tab-system" class="workspace-tab">
         <div class="panel card">
-          <h3>🛡️ Subsystem Health & API Status</h3>
+          <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg> <span>Subsystem Health & API Diagnostics</span></h3>
           <p class="section-desc">Live connection diagnostics for official Google APIs, OAuth tokens, and Python engines.</p>
 
           <div class="subsystems-grid mt-3" id="subsystems-status-grid">
@@ -422,7 +558,7 @@
         </div>
 
         <div class="panel card mt-3">
-          <h3>⚡ Quick Terminal CLI Cheatsheet</h3>
+          <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg> <span>Quick Terminal CLI Cheatsheet</span></h3>
           <div class="cli-cheatsheet-table">
             <div class="cli-row">
               <code>node bin/seo-agi.js status</code>
