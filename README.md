@@ -34,17 +34,27 @@ Devacia SEO AGI unifies enterprise Google APIs (Search Console, Analytics 4, Bus
 ### 1. Clone & Install Dependencies
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/devacia-seo-agi.git
-cd devacia-seo-agi
+git clone https://github.com/Trash-Code01/Devacia-SEO-AGI.git
+cd Devacia-SEO-AGI
 
 # Install Node.js dependencies
 npm install
 
-# Install Python 89-engine dependencies
-pip install -r requirements.txt
+# (Optional) Link CLI globally for the `seo-agi` command
+npm link
 ```
 
-### 2. Configure for Your Domain & APIs
+### 2. Launch the Interactive Web Studio GUI
+
+Start the enterprise Web Studio UI at `http://localhost:3333` (works instantly out of the box with zero API keys required for Keyword Studio, SERP Architect, Live Query Harvester, and Keyword Density Checker):
+
+```bash
+npm run gui
+# or
+seo-agi gui
+```
+
+### 3. Configure Google APIs (Optional for GSC, GA4, GBP, and Google Ads)
 
 Run the interactive setup wizard:
 
@@ -60,14 +70,14 @@ cp .env.example .env
 
 *(See [CONFIGURATION.md](./CONFIGURATION.md) for complete step-by-step Google Cloud OAuth instructions.)*
 
-### 3. Verify Engine Health & Diagnostics
+### 4. Verify Engine Health & Diagnostics
 
-Check the connection and readiness of all 5 subsystems:
+Check the connection and readiness of all subsystems:
 
 ```bash
-node bin/seo-agi.js status
+seo-agi status
 # or
-npm run start
+node bin/seo-agi.js status
 ```
 
 ### 4. Run an End-to-End Strategic SEO Blueprint
@@ -90,6 +100,24 @@ node bin/seo-agi.js audit https://www.yourdomain.com
 ---
 
 ## 🛠️ Subsystem Commands
+
+### ⚡ Quick-Fire Standalone Tools (Zero API Keys Needed)
+
+```bash
+# 1. Launch Interactive Web Studio GUI
+seo-agi gui
+# Runs http://localhost:3333 with live Table/Card views, KD% gauges, and CSV export
+
+# 2. Mathematical SERP Title Tag & Meta Snippet Generator (<580px, <58ch)
+seo-agi title-gen "custom web app development" --brand="Devacia"
+
+# 3. Live Autocomplete Query Harvester & Intent Classifier
+seo-agi queries "web design agency" --geo=us
+
+# 4. Keyword Density & NLP Prominence Auditor
+seo-agi density --title="Enterprise Web Design Services" --keyword="web design"
+seo-agi density --file=content.txt --keyword="custom software"
+```
 
 ### 🎯 1. Google Keyword Planner & SERP Architect (`kpi`)
 ```bash
