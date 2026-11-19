@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const breadcrumbCurrent = document.getElementById('breadcrumb-current');
     const breadcrumbNames = {
-      'tab-keywords': 'Keyword Magic Tool',
+      'tab-keywords': 'Keywords Studio',
       'tab-titles': 'SERP Snippet Studio',
       'tab-queries': 'Live Query Harvester',
       'tab-kd': 'On-Page Density Audit',
@@ -1285,7 +1285,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement('a');
       link.setAttribute('href', encodedUri);
-      link.setAttribute('download', `devacia-semrush-queries-${Date.now()}.csv`);
+      link.setAttribute('download', `devacia-queries-${Date.now()}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
