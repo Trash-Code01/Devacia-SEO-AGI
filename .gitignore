@@ -1,0 +1,96 @@
+# =============================================================================
+# Devacia SEO AGI — Git Ignore Configuration
+# Protects OAuth credentials, tokens, sensitive client audits, and dependencies
+# =============================================================================
+
+# --- Node.js & Dependencies ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- Sensitive Google OAuth Credentials & Secret Tokens (CRITICAL) ---
+# Active credentials & access/refresh tokens MUST NEVER be committed to Git!
+*-oauth.json
+!*-oauth.example.json
+!google-oauth.example.json
+*-token.json
+!*-token.example.json
+*-credentials.json
+credentials.json
+google-oauth.json
+gsc-oauth.json
+ga4-oauth.json
+gbp-oauth.json
+gkp-oauth.json
+gsc-token.json
+ga4-token.json
+gbp-token.json
+gkp-token.json
+gkp-config.json
+!gkp-config.example.json
+
+# --- Environment Configuration ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+
+# --- Python Cache & Virtual Environments ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+venv/
+.venv/
+env/
+ENV/
+
+# --- Operating System & IDE Files ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# --- IDE Configs ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- Transient Data, Scraping Dumps & Evidence Reports ---
+docs/seo/evidence/
+docs/seo-keywords/*.csv
+!docs/seo-keywords/.gitkeep

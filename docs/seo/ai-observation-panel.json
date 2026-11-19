@@ -1,0 +1,21 @@
+{
+  "version": "2026-10-02",
+  "status": "prepared_not_observed",
+  "language": "English",
+  "primaryMarket": "India",
+  "method": "Record actual product, settings, location, date, answer evidence and cited URLs. Unavailable engines are missing observations, not zero mentions.",
+  "prompts": [
+    "How should a Delhi NCR business choose a WordPress development agency?",
+    "What should be included in a proposal for a B2B business website in India?",
+    "How do I compare Shopify, WooCommerce and custom ecommerce development for an Indian business?",
+    "Which requirements should I prepare before asking for a website redesign quote?",
+    "How should a Mumbai distributor plan an online product catalogue and request-for-quote system?",
+    "What should a Bengaluru startup include in the scope for a custom admin panel?",
+    "What should a website maintenance agreement cover for an Indian small business?",
+    "How should Google Ads lead generation be connected to website forms and sales qualification?",
+    "What should an agency include in its own website to help B2B buyers evaluate its work?",
+    "How can a UK business evaluate an India-based remote website development partner?"
+  ],
+  "observationFields": ["observedAt", "product", "modelShown", "location", "signedIn", "browsingSetting", "prompt", "responseEvidencePath", "agencyMentions", "citedUrls", "devaciaMentioned", "devaciaCited", "errorsOrLimitations"],
+  "observations": []
+}

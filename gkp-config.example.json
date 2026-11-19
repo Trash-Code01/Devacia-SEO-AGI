@@ -1,0 +1,8 @@
+{
+  "developerToken": "YOUR_GOOGLE_ADS_DEVELOPER_TOKEN",
+  "customerId": "1234567890",
+  "loginCustomerId": "1234567890",
+  "defaultGeo": "US",
+  "defaultLanguage": "en",
+  "currency": "USD"
+}

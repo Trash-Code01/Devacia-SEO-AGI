@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devacia SEO AGI — Autonomous Intelligence Studio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand-header">
+        <div class="brand-logo">🦅</div>
+        <div class="brand-text">
+          <h2>DEVACIA</h2>
+          <span>SEO AGI STUDIO</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="tab-keywords">
+          <span class="icon">🔑</span>
+          <span class="label">Keywords Studio</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-titles">
+          <span class="icon">🏷️</span>
+          <span class="label">Title & SERP Studio</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-queries">
+          <span class="icon">🔍</span>
+          <span class="label">Live Query Harvester</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-kd">
+          <span class="icon">📊</span>
+          <span class="label">Keyword Density</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-system">
+          <span class="icon">🛡️</span>
+          <span class="label">Subsystem Health</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="system-indicator">
+          <span class="pulse-dot"></span>
+          <span id="system-status-text">Engines Operational</span>
+        </div>
+        <div class="target-site-badge" id="target-site-badge">devacia.com</div>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <main class="main-content">
+      <!-- Top Header Bar -->
+      <header class="top-bar">
+        <div class="header-title">
+          <h1 id="page-title">Keyword Intelligence & Topical Clustering</h1>
+          <p id="page-subtitle">Deep Autocomplete Expansion, Topical Authority Silos & Rank #1 Blueprint Generation</p>
+        </div>
+        <div class="header-actions">
+          <span class="version-badge">v1.0.0 AGI</span>
+          <button class="btn btn-secondary btn-sm" id="btn-refresh-status">↻ Status</button>
+        </div>
+      </header>
+
+      <!-- TAB 1: KEYWORDS STUDIO -->
+      <section id="tab-keywords" class="workspace-tab active">
+        <div class="panel card">
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="kw-seed">Seed Topic or Core Service</label>
+              <input type="text" id="kw-seed" placeholder="e.g. custom software development, b2b web design..." value="web development services">
+            </div>
+            <div class="form-group flex-1">
+              <label for="kw-geo">Target Country</label>
+              <select id="kw-geo">
+                <option value="US" selected>🇺🇸 United States (US)</option>
+                <option value="IN">🇮🇳 India (IN)</option>
+                <option value="UK">🇬🇧 United Kingdom (UK)</option>
+                <option value="CA">🇨🇦 Canada (CA)</option>
+                <option value="AU">🇦🇺 Australia (AU)</option>
+              </select>
+            </div>
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="kw-alphabet" checked>
+                <span>Alphabet Soup (a-z)</span>
+              </label>
+            </div>
+            <div class="form-group btn-group-align">
+              <button class="btn btn-primary" id="btn-kw-expand">⚡ Deep Expansion</button>
+              <button class="btn btn-secondary" id="btn-kw-cluster">📦 Build Clusters</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Output Toolbar -->
+        <div class="results-toolbar hidden" id="kw-toolbar">
+          <div class="toolbar-stats">
+            <span class="stat-pill"><strong id="kw-total-count">0</strong> Keywords Found</span>
+            <span class="stat-pill">Intent: <strong id="kw-dominant-intent">Mixed</strong></span>
+          </div>
+          <div class="toolbar-actions">
+            <input type="text" id="kw-table-filter" placeholder="Filter keywords..." class="search-input">
+            <button class="btn btn-sm btn-outline" id="btn-kw-export-csv">📥 Export CSV</button>
+            <button class="btn btn-sm btn-emerald" id="btn-kw-generate-blueprint">📄 Rank #1 Blueprint</button>
+          </div>
+        </div>
+
+        <!-- Table View -->
+        <div class="panel card table-container hidden" id="kw-results-panel">
+          <table class="data-table" id="kw-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Discovered Keyword</th>
+                <th>Est. Volume</th>
+                <th>Intent</th>
+                <th>Difficulty Tier</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="kw-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Topical Clusters Cards Grid -->
+        <div class="clusters-grid hidden" id="kw-clusters-grid">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- TAB 2: TITLE & SERP STUDIO -->
+      <section id="tab-titles" class="workspace-tab">
+        <div class="grid-2-col">
+          <!-- Input & Controls -->
+          <div class="panel card">
+            <h3>🏷️ Title & Snippet Engineering</h3>
+            <p class="section-desc">Generate mathematically verified Title Tags (&lt; 58ch, &lt; 580px) and Meta Descriptions (&lt; 155ch) with zero SERP truncation.</p>
+
+            <div class="form-group mt-3">
+              <label for="title-topic">Target Topic / Primary Keyphrase</label>
+              <input type="text" id="title-topic" placeholder="e.g. B2B SaaS Development" value="custom software development services">
+            </div>
+
+            <div class="form-row mt-2">
+              <div class="form-group flex-1">
+                <label for="title-brand">Brand Suffix</label>
+                <input type="text" id="title-brand" placeholder="Brand Name" value="Devacia">
+              </div>
+              <div class="form-group flex-1">
+                <label for="title-audience">Target Audience</label>
+                <select id="title-audience">
+                  <option value="Businesses" selected>Businesses</option>
+                  <option value="Startups">Startups</option>
+                  <option value="Enterprises">Enterprises</option>
+                  <option value="Modern Brands">Modern Brands</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group mt-2">
+              <label for="title-geo">Optional Geo Hook (State / City)</label>
+              <input type="text" id="title-geo" placeholder="e.g. California, Austin, Delhi NCR (Optional)">
+            </div>
+
+            <div class="btn-group-row mt-3">
+              <button class="btn btn-primary" id="btn-generate-titles">✨ Generate Verified Titles</button>
+            </div>
+
+            <div class="candidates-list mt-4" id="title-candidates-list">
+              <h4>Candidate Titles (Click to Preview in Google):</h4>
+              <div class="candidates-container" id="candidates-container">
+                <div class="empty-state-notice">Click "Generate Verified Titles" above to calculate CTR title variants.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Google SERP Simulation Card -->
+          <div class="panel card serp-simulator-card">
+            <div class="serp-header">
+              <h3>🔍 Live Google SERP Simulation</h3>
+              <div class="device-toggle">
+                <button class="device-btn active" data-device="desktop">Desktop</button>
+                <button class="device-btn" data-device="mobile">Mobile</button>
+              </div>
+            </div>
+
+            <!-- The Authentic Google SERP Snippet Box -->
+            <div class="google-serp-box" id="google-serp-box">
+              <div class="serp-breadcrumb">
+                <div class="serp-favicon">🦅</div>
+                <div class="serp-url-text">
+                  <span class="serp-site-name" id="serp-site-name">Devacia</span>
+                  <span class="serp-url-path" id="serp-url-path">https://www.devacia.com › services › custom-software</span>
+                </div>
+              </div>
+              <h3 class="serp-title" id="serp-preview-title">Best Custom Software Development Services for Businesses | Devacia</h3>
+              <p class="serp-snippet" id="serp-preview-snippet">Scale your growth with expert custom software development from Devacia. Proven frameworks, custom architecture, and measurable ROI. Speak with an expert today.</p>
+            </div>
+
+            <!-- Validation Meters -->
+            <div class="validation-meters mt-3">
+              <div class="meter-item">
+                <div class="meter-label">
+                  <span>Title Character Width:</span>
+                  <strong id="char-meter-val">58 / 58 chars</strong>
+                </div>
+                <div class="meter-bar-track">
+                  <div class="meter-bar-fill fill-green" id="char-bar-fill" style="width: 100%;"></div>
+                </div>
+                <span class="badge badge-green" id="char-status-badge">✓ OPTIMAL</span>
+              </div>
+
+              <div class="meter-item mt-2">
+                <div class="meter-label">
+                  <span>Title Pixel Width (Arial 20px):</span>
+                  <strong id="pixel-meter-val">524 / 580 px</strong>
+                </div>
+                <div class="meter-bar-track">
+                  <div class="meter-bar-fill fill-cyan" id="pixel-bar-fill" style="width: 90%;"></div>
+                </div>
+                <span class="badge badge-cyan" id="pixel-status-badge">✓ ZERO TRUNCATION</span>
+              </div>
+
+              <div class="meter-item mt-2">
+                <div class="meter-label">
+                  <span>Meta Description Length:</span>
+                  <strong id="desc-meter-val">152 / 155 chars</strong>
+                </div>
+                <div class="meter-bar-track">
+                  <div class="meter-bar-fill fill-green" id="desc-bar-fill" style="width: 98%;"></div>
+                </div>
+                <span class="badge badge-green" id="desc-status-badge">✓ OPTIMAL</span>
+              </div>
+            </div>
+
+            <!-- Meta Description Options -->
+            <div class="meta-options-container mt-4">
+              <h4>CTR-Optimized Meta Descriptions:</h4>
+              <div id="meta-descriptions-container">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: LIVE QUERIES HARVESTER -->
+      <section id="tab-queries" class="workspace-tab">
+        <div class="panel card">
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="query-seed">Root Query or Buying Trigger</label>
+              <input type="text" id="query-seed" placeholder="e.g. ai agent development, seo services" value="web design agency">
+            </div>
+            <div class="form-group flex-1">
+              <label for="query-geo">Target Google Search Region</label>
+              <select id="query-geo">
+                <option value="us" selected>Google US (google.com)</option>
+                <option value="in">Google India (google.co.in)</option>
+                <option value="uk">Google UK (google.co.uk)</option>
+                <option value="ca">Google Canada (google.ca)</option>
+                <option value="au">Google Australia (google.com.au)</option>
+              </select>
+            </div>
+            <div class="form-group btn-group-align">
+              <button class="btn btn-primary" id="btn-harvest-queries">🔍 Harvest Live Queries</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="queries-layout mt-3">
+          <!-- Intent Filter Tabs -->
+          <div class="sub-nav-tabs">
+            <button class="sub-tab-btn active" data-filter="all">All Queries (<span id="count-all">0</span>)</button>
+            <button class="sub-tab-btn" data-filter="commercial">💼 Commercial (<span id="count-commercial">0</span>)</button>
+            <button class="sub-tab-btn" data-filter="questions">❓ Questions (<span id="count-questions">0</span>)</button>
+            <button class="sub-tab-btn" data-filter="comparison">⚖️ Comparison (<span id="count-comparison">0</span>)</button>
+            <button class="sub-tab-btn" data-filter="local">📍 Local Searches (<span id="count-local">0</span>)</button>
+          </div>
+
+          <!-- Queries List Card -->
+          <div class="panel card mt-2">
+            <div class="queries-grid" id="queries-results-grid">
+              <div class="empty-state-notice">Click "Harvest Live Queries" to stream real-time Google search suggestions.</div>
+            </div>
+          </div>
+
+          <!-- Local UULE Simulator Panel -->
+          <div class="panel card mt-3">
+            <h3>📍 Hyper-Local Search Behavior & UULE Simulator</h3>
+            <p class="section-desc">Simulate physically standing in any major metro to extract location-specific search habits and zero-truncation Schema.org.</p>
+            <div class="form-row mt-2">
+              <div class="form-group flex-1">
+                <label for="uule-location">Metro Location</label>
+                <select id="uule-location">
+                  <option value="california">California (US State)</option>
+                  <option value="new york">New York (US State)</option>
+                  <option value="san francisco">San Francisco (CA Metro)</option>
+                  <option value="austin">Austin (TX Metro)</option>
+                  <option value="miami">Miami (FL Metro)</option>
+                  <option value="delhi ncr">Delhi NCR (India Metro)</option>
+                  <option value="bangalore">Bangalore (Silicon Valley of India)</option>
+                  <option value="mumbai">Mumbai (Financial Capital)</option>
+                </select>
+              </div>
+              <div class="form-group flex-1">
+                <label for="uule-service">Service Offering</label>
+                <input type="text" id="uule-service" value="Custom Software Development">
+              </div>
+              <div class="form-group btn-group-align">
+                <button class="btn btn-secondary" id="btn-run-uule">⚡ Simulate Local</button>
+              </div>
+            </div>
+
+            <div class="uule-results-container mt-3 hidden" id="uule-results-container">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: KEYWORD DENSITY AUDITOR -->
+      <section id="tab-kd" class="workspace-tab">
+        <div class="grid-2-col">
+          <!-- Text Input Column -->
+          <div class="panel card">
+            <div class="kd-mode-header">
+              <h3>📊 Content & Keyword Density Auditor</h3>
+              <div class="mode-switch">
+                <button class="mode-btn active" data-mode="article">Article / Content Body</button>
+                <button class="mode-btn" data-mode="title">Meta Title Only</button>
+              </div>
+            </div>
+
+            <div class="form-group mt-3">
+              <label for="kd-target">Target Keyword / Primary Keyphrase</label>
+              <input type="text" id="kd-target" placeholder="e.g. web development services" value="web development services">
+            </div>
+
+            <div class="form-group mt-2" id="kd-text-group">
+              <label for="kd-content">Paste Article, Blog Post, or Page Copy</label>
+              <textarea id="kd-content" rows="12" placeholder="Paste your article draft or copy here..."></textarea>
+            </div>
+
+            <div class="form-group mt-2 hidden" id="kd-title-group">
+              <label for="kd-title-input">Meta Title String</label>
+              <input type="text" id="kd-title-input" placeholder="e.g. Best Web Development Services for Businesses | Devacia">
+            </div>
+
+            <div class="btn-group-row mt-3">
+              <button class="btn btn-primary" id="btn-analyze-kd">🚀 Analyze Density & Prominence</button>
+              <button class="btn btn-outline" id="btn-load-sample-text">Load Sample Content</button>
+            </div>
+          </div>
+
+          <!-- Analysis Results Column -->
+          <div class="panel card" id="kd-results-column">
+            <h3>📈 Real-Time Density & NLP Analysis</h3>
+
+            <!-- Density Speedometer / Meter Gauge -->
+            <div class="density-gauge-box mt-3" id="density-gauge-box">
+              <div class="gauge-display">
+                <span class="gauge-number" id="gauge-number">1.8%</span>
+                <span class="gauge-label" id="gauge-label">Keyword Density</span>
+              </div>
+              <div class="gauge-status-badge badge badge-green" id="gauge-status-badge">OPTIMAL RANGE (1.0% - 2.5%)</div>
+              <p class="gauge-explanation mt-1" id="gauge-explanation">Balanced frequency. Maximizes contextual relevance with zero keyword stuffing penalty risk.</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid-3 mt-3">
+              <div class="stat-card">
+                <span class="stat-num" id="stat-word-count">0</span>
+                <span class="stat-desc">Total Words</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="stat-kw-matches">0</span>
+                <span class="stat-desc">Target Matches</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="stat-reading-time">1 min</span>
+                <span class="stat-desc">Reading Time</span>
+              </div>
+            </div>
+
+            <!-- N-Gram Distribution Breakdown -->
+            <div class="ngram-section mt-4">
+              <h4>Top NLP Keyword Phrases (N-Grams):</h4>
+              <div class="ngram-pills" id="ngram-pills">
+                <span class="ngram-pill">Run analysis to extract top 1/2/3-grams</span>
+              </div>
+            </div>
+
+            <!-- Text Highlighter Container -->
+            <div class="highlighter-section mt-4">
+              <h4>Highlighted Keyword Occurrences in Content:</h4>
+              <div class="highlighted-text-box" id="highlighted-text-box">
+                <p class="empty-state-notice">Highlighted occurrences will appear here after analysis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: SYSTEM & SUBSYSTEM HEALTH -->
+      <section id="tab-system" class="workspace-tab">
+        <div class="panel card">
+          <h3>🛡️ Subsystem Health & API Status</h3>
+          <p class="section-desc">Live connection diagnostics for official Google APIs, OAuth tokens, and Python engines.</p>
+
+          <div class="subsystems-grid mt-3" id="subsystems-status-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <div class="panel card mt-3">
+          <h3>⚡ Quick Terminal CLI Cheatsheet</h3>
+          <div class="cli-cheatsheet-table">
+            <div class="cli-row">
+              <code>node bin/seo-agi.js status</code>
+              <span>Run comprehensive multi-engine connection & diagnostic audit</span>
+            </div>
+            <div class="cli-row">
+              <code>node bin/seo-agi.js plan "topic"</code>
+              <span>Generate End-to-End Strategic Rank #1 Blueprint & Schema</span>
+            </div>
+            <div class="cli-row">
+              <code>node bin/seo-agi.js titles</code>
+              <span>Audit Title & Meta tag zero-truncation pixel compliance</span>
+            </div>
+            <div class="cli-row">
+              <code>node bin/seo-agi.js kpi expand "seed" --geo=US</code>
+              <span>Instant 50-300+ real-time long-tail keyword expansion</span>
+            </div>
+            <div class="cli-row">
+              <code>node bin/seo-agi.js mcp</code>
+              <span>Launch Master Model Context Protocol (MCP) Server for AI agents</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal for Rank #1 Blueprint -->
+  <div class="modal-backdrop hidden" id="blueprint-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">Rank #1 Semantic Blueprint</h3>
+        <button class="modal-close-btn" id="btn-close-modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre><code id="modal-code-content">Loading blueprint...</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="btn-copy-blueprint">📋 Copy Markdown</button>
+        <button class="btn btn-primary" id="btn-dismiss-modal">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
