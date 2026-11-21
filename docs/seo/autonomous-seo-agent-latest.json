@@ -1,0 +1,815 @@
+{
+  "targetDomain": "devacia.com",
+  "targetUrl": "https://devacia.com",
+  "executedAt": "2026-11-21T08:25:29.093Z",
+  "overallScore": 75,
+  "modules": {
+    "domainRating": {
+      "domain": "devacia.com",
+      "checkedAt": "2026-11-21T08:25:29.094Z",
+      "metrics": {
+        "dr": 4,
+        "da": 6,
+        "authorityScore": 8,
+        "trustFlow": 12,
+        "estimatedBacklinks": 28,
+        "referringDomains": 14,
+        "dofollowRatio": "85%",
+        "penaltyRisk": "LOW"
+      },
+      "signals": {
+        "sslActive": true,
+        "hasSitemap": true,
+        "hasRobotsTxt": true,
+        "hasSchemaGraph": true,
+        "discoveredExternalMentions": 5
+      },
+      "knownBacklinks": [
+        {
+          "source": "https://clutch.co/profile/devacia",
+          "anchor": "Devacia Web Development",
+          "type": "dofollow",
+          "dr": 91
+        },
+        {
+          "source": "https://goodfirms.co/company/devacia",
+          "anchor": "Devacia",
+          "type": "dofollow",
+          "dr": 86
+        },
+        {
+          "source": "https://github.com/laraibasjed",
+          "anchor": "https://www.devacia.com",
+          "type": "nofollow",
+          "dr": 96
+        },
+        {
+          "source": "https://www.yoglivya.com",
+          "anchor": "Engineered by Devacia",
+          "type": "dofollow",
+          "dr": 15
+        },
+        {
+          "source": "https://crunchbase.com/organization/devacia",
+          "anchor": "Devacia",
+          "type": "nofollow",
+          "dr": 91
+        }
+      ],
+      "recommendations": [
+        "DR is under 10. Prioritize 5 high-authority (DR 80+) directory citations: Clutch, GoodFirms, Crunchbase, and Trustpilot.",
+        "Deploy client footer attribution links (\"Website by Devacia\") on all active live projects.",
+        "Publish 1 original data study to earn natural editorial backlinks from tech blogs."
+      ]
+    },
+    "backlinkBuilder": {
+      "targetDomain": "devacia.com",
+      "analyzedCompetitors": [
+        "standard-agency-example.com",
+        "growth-software-sample.com"
+      ],
+      "totalOpportunitiesFound": 5,
+      "opportunities": [
+        {
+          "sourceDomain": "clutch.co",
+          "dr": 91,
+          "opportunityType": "Directory & Review Profile",
+          "action": "Create agency profile and invite 3 past clients for verified reviews.",
+          "estimatedImpact": "HIGH (+5 DR points, entity graph citation)"
+        },
+        {
+          "sourceDomain": "github.com",
+          "dr": 96,
+          "opportunityType": "Open Source Repository / Showcase",
+          "action": "Publish open-source Next.js starter templates or SEO tools with links to devacia.com.",
+          "estimatedImpact": "HIGH (Dofollow authority from project readme)"
+        },
+        {
+          "sourceDomain": "dev.to",
+          "dr": 91,
+          "opportunityType": "Developer Article & Case Study",
+          "action": "Publish technical deep-dive: \"How we scaled Next.js 16 ecommerce performance in India\".",
+          "estimatedImpact": "MEDIUM (Targeted referral traffic & contextual backlink)"
+        },
+        {
+          "sourceDomain": "medium.com",
+          "dr": 94,
+          "opportunityType": "Industry Publication",
+          "action": "Republish thought leadership on custom software vs SaaS architecture with canonical attribution.",
+          "estimatedImpact": "MEDIUM (Brand entity reinforcement)"
+        },
+        {
+          "sourceDomain": "your-client-stores.com",
+          "dr": 25,
+          "opportunityType": "Client Footer Link",
+          "action": "Deploy \"Website by Devacia\" in client store footers (e.g., Yoglivya, Almina).",
+          "estimatedImpact": "VERY HIGH (Natural, commercial, followed backlinks)"
+        }
+      ],
+      "tier1Directories": [
+        {
+          "name": "Clutch.co",
+          "category": "Web Design & Custom Software Agency",
+          "dr": 91,
+          "url": "https://clutch.co",
+          "submissionUrl": "https://clutch.co/get-listed",
+          "importance": "CRITICAL",
+          "tips": "Include 3 client verified reviews and portfolio screenshots."
+        },
+        {
+          "name": "GoodFirms.co",
+          "category": "Software & Mobile Development Company",
+          "dr": 86,
+          "url": "https://goodfirms.co",
+          "submissionUrl": "https://goodfirms.co/get-listed",
+          "importance": "HIGH",
+          "tips": "Complete company profile with verified hourly rates and technologies (Next.js, Shopify, Node.js)."
+        },
+        {
+          "name": "Crunchbase",
+          "category": "Technology Company / Startup",
+          "dr": 91,
+          "url": "https://crunchbase.com",
+          "submissionUrl": "https://www.crunchbase.com/add-new",
+          "importance": "HIGH",
+          "tips": "Create organization profile with founder info, headquarters (Prayagraj), and service verticals."
+        },
+        {
+          "name": "DesignRush",
+          "category": "Top Web Design Agencies",
+          "dr": 78,
+          "url": "https://designrush.com",
+          "submissionUrl": "https://www.designrush.com/agency-registration",
+          "importance": "HIGH",
+          "tips": "Submit top case studies and portfolio links."
+        },
+        {
+          "name": "Startup India",
+          "category": "Government Recognized Startup",
+          "dr": 72,
+          "url": "https://startupindia.gov.in",
+          "submissionUrl": "https://www.startupindia.gov.in/content/sih/en/registration.html",
+          "importance": "HIGH",
+          "tips": "Registers business entity and provides official .gov.in citation trust."
+        },
+        {
+          "name": "ProductHunt",
+          "category": "Software & Tools Showcase",
+          "dr": 91,
+          "url": "https://producthunt.com",
+          "submissionUrl": "https://www.producthunt.com/posts/new",
+          "importance": "MEDIUM",
+          "tips": "Launch a free tool or the SEO AGI studio as a public product."
+        }
+      ],
+      "samplePitches": {
+        "guestPost": {
+          "subject": "Article pitch: Modern Next.js 16 Web Architecture & E-Commerce Speed for [Website/Blog Name]",
+          "type": "Editorial Guest Post Pitch",
+          "body": "Hi [Editor Name],\n\nI've been following [Website/Blog Name]'s coverage of web development and digital growth. \n\nI'd love to contribute an original, data-backed article for your audience. Here are three timely topics we've tested with measurable client results:\n\n1. Modern Next.js 16 Web Architecture & E-Commerce Speed: Why Traditional Frameworks Are Losing 40% of Mobile Conversions\n2. Custom Software vs. Off-The-Shelf SaaS: The Real Cost Breakdown in 2026\n3. How D2C Brands in India Scale Shopify Checkout Speed Without Expensive Apps\n\nEach article includes verified benchmarks, code examples, and zero generic fluff.\n\nWould any of these be a good fit for [Website/Blog Name]?\n\nBest regards,\nLaraib Asjad\nTechnical Director, Devacia\nhttps://www.devacia.com"
+        },
+        "clientFooter": {
+          "subject": "Devacia Attribution Code for Client Footers",
+          "type": "Client Footer Code",
+          "code": "<!-- Devacia Verified Agency Attribution -->\n<p class=\"agency-credit\">\n  Engineered by <a href=\"https://devacia.com\" target=\"_blank\" rel=\"noopener\" title=\"Custom Software & Web Development Agency\">Devacia</a>\n</p>",
+          "instructions": "Add this clean snippet to the footer copyright area of all delivered client websites."
+        }
+      }
+    },
+    "geo": {
+      "url": "https://devacia.com",
+      "origin": "https://devacia.com",
+      "checkedAt": "2026-11-21T08:25:30.173Z",
+      "scores": {
+        "geoOverall": 85,
+        "aiCrawlerAccess": 100,
+        "citationReadiness": 100,
+        "llmsTxtCompliance": 100,
+        "answerBlockDensity": 25,
+        "entityStrength": 99
+      },
+      "crawlers": [
+        {
+          "bot": "GPTBot (OpenAI / ChatGPT)",
+          "ua": "GPTBot",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "ChatGPT-User (Browsing Mode)",
+          "ua": "ChatGPT-User",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "ClaudeBot (Anthropic Claude)",
+          "ua": "ClaudeBot",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "PerplexityBot (Perplexity AI)",
+          "ua": "PerplexityBot",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "Google-Extended (Gemini / Vertex)",
+          "ua": "Google-Extended",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "Applebot-Extended (Apple Intelligence)",
+          "ua": "Applebot-Extended",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "Bytespider (ByteDance AI)",
+          "ua": "Bytespider",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "CCBot (Common Crawl / LLM Training)",
+          "ua": "CCBot",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "Cohere-AI (Cohere Models)",
+          "ua": "cohere-ai",
+          "status": "ALLOWED"
+        },
+        {
+          "bot": "Meta-ExternalAgent (Meta Llama)",
+          "ua": "Meta-ExternalAgent",
+          "status": "ALLOWED"
+        }
+      ],
+      "llmsTxt": {
+        "hasLlmsTxt": true,
+        "hasLlmsFullTxt": true,
+        "charCount": 16162,
+        "details": "Found valid /llms.txt file"
+      },
+      "answerBlocks": {
+        "total": 1,
+        "examples": [
+          {
+            "heading": "Our Base &amp; Markets We Serve",
+            "answer": "Based in Prayagraj, with remote delivery for clients across Delhi NCR and other Indian markets. The market pages below describe services, not additional office locations.",
+            "wordCount": 25,
+            "geoQuality": "GOOD"
+          }
+        ]
+      },
+      "tablesAndLists": {
+        "tables": 0,
+        "unorderedLists": 1,
+        "orderedLists": 0
+      },
+      "entities": [
+        {
+          "entity": "Devacia",
+          "occurrences": 96
+        },
+        {
+          "entity": "Next.js",
+          "occurrences": 3
+        },
+        {
+          "entity": "Shopify",
+          "occurrences": 29
+        },
+        {
+          "entity": "WordPress",
+          "occurrences": 29
+        },
+        {
+          "entity": "SEO",
+          "occurrences": 1
+        },
+        {
+          "entity": "Delhi",
+          "occurrences": 9
+        },
+        {
+          "entity": "Prayagraj",
+          "occurrences": 24
+        },
+        {
+          "entity": "Bangalore",
+          "occurrences": 5
+        },
+        {
+          "entity": "Mumbai",
+          "occurrences": 6
+        },
+        {
+          "entity": "B2B",
+          "occurrences": 12
+        },
+        {
+          "entity": "D2C",
+          "occurrences": 10
+        }
+      ],
+      "recommendations": [
+        "Add 2-3 concise Answer Blocks (40-60 words directly beneath H2 headers) for Perplexity and Google AI Overviews.",
+        "Add structured HTML comparison tables (e.g., pricing, feature matrices) to improve LLM tabular ingestion."
+      ]
+    },
+    "cwv": {
+      "success": true,
+      "source": "Devacia Synthetic Core Web Engine",
+      "url": "https://devacia.com",
+      "strategy": "mobile",
+      "fetchedAt": "2026-11-21T08:25:31.900Z",
+      "scores": {
+        "performance": 75,
+        "seo": 95
+      },
+      "metrics": {
+        "ttfb": "105 ms",
+        "totalFetchTime": "108 ms",
+        "htmlSize": "152.6 KB",
+        "compression": "br",
+        "scriptCount": 31,
+        "stylesheetCount": 2,
+        "imageCount": 2,
+        "modernImageRatio": "0%",
+        "mobileViewport": "CONFIGURED"
+      },
+      "opportunities": [
+        "Upgrade older PNG/JPG images to next-gen formats (WebP/AVIF)."
+      ]
+    },
+    "schema": {
+      "success": true,
+      "url": "https://devacia.com",
+      "score": 80,
+      "totalSchemas": 4,
+      "typesFound": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "ProfessionalService"
+      ],
+      "schemas": [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "@id": "https://www.devacia.com/#organization",
+          "name": "Devacia",
+          "url": "https://www.devacia.com",
+          "foundingDate": "2025-06",
+          "description": "Devacia builds high-performance websites, custom software, and connected growth systems for startups, ecommerce brands, and growing businesses across India, the United States, and select international markets.",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.devacia.com/logo-clean.png"
+          },
+          "image": "https://www.devacia.com/logo-clean.png",
+          "founder": {
+            "@id": "https://www.devacia.com/#founder"
+          },
+          "email": "hello@devacia.com",
+          "telephone": "+916306940734",
+          "sameAs": [
+            "https://www.linkedin.com/company/devacia",
+            "https://www.instagram.com/devaciaofficial/",
+            "https://x.com/devaciacom",
+            "https://clutch.co/profile/devacia"
+          ],
+          "knowsAbout": [
+            "web development agency",
+            "website development company",
+            "website development agency for startups",
+            "wordpress development",
+            "shopify development",
+            "custom web development",
+            "custom software development",
+            "landing page design",
+            "lead generation websites",
+            "conversion rate optimization",
+            "ecommerce conversion rescue",
+            "custom booking systems",
+            "clinic website lead generation",
+            "startup MVP development",
+            "SaaS development",
+            "business automation systems",
+            "website support and maintenance",
+            "lead management systems",
+            "booking systems",
+            "performance marketing",
+            "meta ads",
+            "google ads",
+            "whatsapp automation",
+            "website is broken",
+            "website is down",
+            "website is slow",
+            "website not driving leads",
+            "website traffic is going down",
+            "website not converting",
+            "website is not driving ROI",
+            "website is not showing up on Google",
+            "how to choose a web development agency",
+            "agency is not driving results"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IN",
+            "streetAddress": "22/2N Rehmat Nagar, Kareli",
+            "addressLocality": "Prayagraj",
+            "addressRegion": "Uttar Pradesh",
+            "postalCode": "211016"
+          },
+          "location": [
+            {
+              "@type": "Place",
+              "name": "Prayagraj head office",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN",
+                "streetAddress": "22/2N Rehmat Nagar, Kareli",
+                "addressLocality": "Prayagraj",
+                "addressRegion": "Uttar Pradesh",
+                "postalCode": "211016"
+              }
+            }
+          ],
+          "areaServed": [
+            {
+              "@type": "Place",
+              "name": "India"
+            },
+            {
+              "@type": "Place",
+              "name": "United States"
+            }
+          ],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "contactType": "customer support",
+              "email": "hello@devacia.com",
+              "telephone": "+916306940734",
+              "areaServed": [
+                "India",
+                "United States"
+              ],
+              "availableLanguage": [
+                "English",
+                "Hindi"
+              ]
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Devacia Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Website Development",
+                  "description": "High-performance websites for brands, startups, and growing businesses across WordPress, Shopify, and custom builds."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "WordPress Development",
+                  "description": "WordPress websites built for speed, clarity, lead generation, and easier day-to-day management."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Shopify Development",
+                  "description": "Shopify stores and ecommerce builds designed for trust, conversion, and smoother customer journeys."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Custom Web Development",
+                  "description": "Custom-coded web builds for businesses that need performance, flexibility, and long-term scalability."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Custom Software Development",
+                  "description": "Business software, admin panels, CRM workflows, and semi-SaaS systems built around real operational needs."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Landing Page Design",
+                  "description": "Conversion-focused landing pages for lead generation, ecommerce campaigns, and launch funnels."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Lead Generation Websites",
+                  "description": "Lead-generation websites designed to turn search, ads, and referrals into qualified calls, forms, and booked conversations."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Conversion Rate Optimization",
+                  "description": "Conversion-focused improvements across websites, landing pages, and storefront journeys to increase lead and sales action."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Business Automation Systems",
+                  "description": "Lead routing, booking workflows, dashboards, and website-connected operational automation."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Lead Management and Booking Systems",
+                  "description": "Lead handling, qualification, booking, and operational workflows connected to the website and business process."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Startup MVP Development",
+                  "description": "End-to-end startup and product development for teams that need a serious first version built to scale."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Website Support and Maintenance",
+                  "description": "Stability, cleanup, performance support, and practical maintenance for websites that are broken, slow, or underperforming."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Performance Marketing",
+                  "description": "Meta Ads, Google Ads, WhatsApp automation, and connected funnel management for brands that need growth systems, not isolated campaigns."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "@id": "https://www.devacia.com/#website",
+          "url": "https://www.devacia.com",
+          "name": "Devacia",
+          "description": "Devacia builds high-performance websites, custom software, and connected growth systems for startups, ecommerce brands, and growing businesses across India, the United States, and select international markets.",
+          "publisher": {
+            "@id": "https://www.devacia.com/#organization"
+          },
+          "about": {
+            "@id": "https://www.devacia.com/#organization"
+          },
+          "inLanguage": "en-IN",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.devacia.com/blog?search={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "@id": "https://www.devacia.com/#home-breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.devacia.com"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "@id": "https://www.devacia.com#professional-service",
+          "name": "Devacia",
+          "url": "https://www.devacia.com",
+          "description": "Devacia builds high-performance websites, custom software, and connected growth systems for startups, ecommerce brands, and growing businesses across India, the United States, and select international markets.",
+          "provider": {
+            "@id": "https://www.devacia.com/#organization"
+          },
+          "email": "hello@devacia.com",
+          "telephone": "+916306940734",
+          "areaServed": [
+            {
+              "@type": "Place",
+              "name": "India"
+            },
+            {
+              "@type": "Place",
+              "name": "United States"
+            }
+          ],
+          "knowsLanguage": [
+            "English"
+          ],
+          "knowsAbout": [
+            "web development agency",
+            "website development company",
+            "website development agency for startups",
+            "wordpress development",
+            "shopify development",
+            "custom web development",
+            "custom software development",
+            "landing page design",
+            "lead generation websites",
+            "conversion rate optimization",
+            "ecommerce conversion rescue",
+            "custom booking systems",
+            "clinic website lead generation",
+            "startup MVP development",
+            "SaaS development",
+            "business automation systems",
+            "website support and maintenance",
+            "lead management systems",
+            "booking systems",
+            "performance marketing",
+            "meta ads",
+            "google ads",
+            "whatsapp automation",
+            "website is broken",
+            "website is down",
+            "website is slow",
+            "website not driving leads",
+            "website traffic is going down",
+            "website not converting",
+            "website is not driving ROI",
+            "website is not showing up on Google",
+            "how to choose a web development agency",
+            "agency is not driving results"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Devacia Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Website Development",
+                  "description": "High-performance websites for brands, startups, and growing businesses across WordPress, Shopify, and custom builds."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "WordPress Development",
+                  "description": "WordPress websites built for speed, clarity, lead generation, and easier day-to-day management."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Shopify Development",
+                  "description": "Shopify stores and ecommerce builds designed for trust, conversion, and smoother customer journeys."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Custom Web Development",
+                  "description": "Custom-coded web builds for businesses that need performance, flexibility, and long-term scalability."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Custom Software Development",
+                  "description": "Business software, admin panels, CRM workflows, and semi-SaaS systems built around real operational needs."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Landing Page Design",
+                  "description": "Conversion-focused landing pages for lead generation, ecommerce campaigns, and launch funnels."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Lead Generation Websites",
+                  "description": "Lead-generation websites designed to turn search, ads, and referrals into qualified calls, forms, and booked conversations."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Conversion Rate Optimization",
+                  "description": "Conversion-focused improvements across websites, landing pages, and storefront journeys to increase lead and sales action."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Business Automation Systems",
+                  "description": "Lead routing, booking workflows, dashboards, and website-connected operational automation."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Lead Management and Booking Systems",
+                  "description": "Lead handling, qualification, booking, and operational workflows connected to the website and business process."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Startup MVP Development",
+                  "description": "End-to-end startup and product development for teams that need a serious first version built to scale."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Website Support and Maintenance",
+                  "description": "Stability, cleanup, performance support, and practical maintenance for websites that are broken, slow, or underperforming."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Performance Marketing",
+                  "description": "Meta Ads, Google Ads, WhatsApp automation, and connected funnel management for brands that need growth systems, not isolated campaigns."
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "openGraph": {
+        "og:title": "Web Design &amp; Development Agency | Devacia",
+        "og:description": "Devacia is a web design, development, and performance marketing agency. We engineer high-converting websites, web apps, and automated systems for growth.",
+        "og:url": "https://www.devacia.com",
+        "og:site_name": "Devacia",
+        "og:image": "https://res.cloudinary.com/dcf2h1rck/image/upload/v1793432238/Devacia_s_quiet_editorial_vision_gqqtau.png",
+        "og:image:width": "1200",
+        "og:image:height": "630",
+        "og:image:alt": "Web Design &amp; Development Agency | Devacia",
+        "og:type": "website"
+      },
+      "twitter": {
+        "twitter:card": "summary_large_image",
+        "twitter:site": "@devaciacom",
+        "twitter:creator": "@laraibasjad",
+        "twitter:title": "Web Design &amp; Development Agency | Devacia",
+        "twitter:description": "Devacia is a web design, development, and performance marketing agency. We engineer high-converting websites, web apps, and automated systems for growth.",
+        "twitter:image": "https://res.cloudinary.com/dcf2h1rck/image/upload/v1793432238/Devacia_s_quiet_editorial_vision_gqqtau.png",
+        "twitter:image:alt": "Web Design &amp; Development Agency | Devacia"
+      },
+      "checks": {
+        "hasOrganizationOrBusiness": true,
+        "hasWebSite": true,
+        "hasServiceOrProduct": false,
+        "hasFaq": false,
+        "hasBreadcrumbs": true,
+        "hasOpenGraph": true,
+        "hasTwitterCards": true
+      }
+    }
+  },
+  "actionPlan": [
+    "Claim Tier-1 citations on Clutch, GoodFirms, and Crunchbase to quickly boost DR from 0 -> 15+.",
+    "Add missing Organization and BreadcrumbList JSON-LD schemas to achieve 100/100 structured data health.",
+    "Inject client footer attribution links (\"Website by Devacia\") on all active production customer stores."
+  ]
+}

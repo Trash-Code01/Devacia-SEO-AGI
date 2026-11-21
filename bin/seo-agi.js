@@ -64,6 +64,27 @@ ${ANSI.bold}SUBSYSTEMS:${ANSI.reset}
   ${ANSI.magenta}${ANSI.bold}dispatch${ANSI.reset} <agent> [args...]
     Dispatch mission to specialist expert: architect, geo, cro, authority, or sentinel.
 
+  ${ANSI.cyan}${ANSI.bold}dr${ANSI.reset} [domain]
+    Check live Domain Rating (DR), Domain Authority (DA), and backlink authority metrics.
+
+  ${ANSI.cyan}${ANSI.bold}backlinks${ANSI.reset} [domain]
+    Audit active backlinks, anchor text distribution, and over-optimization penalty risk.
+
+  ${ANSI.cyan}${ANSI.bold}backlink-builder${ANSI.reset} [domain]
+    Find competitor backlink gaps, Tier-1 DR 80+ directories, and generate outreach pitches.
+
+  ${ANSI.magenta}${ANSI.bold}test-agent${ANSI.reset} [domain]
+    Run the Big Autonomous SEO Agent Sentinel test across all 6 core vectors with full report.
+
+  ${ANSI.cyan}${ANSI.bold}geo${ANSI.reset} [url]
+    Run GEO & AI Search Engine Audit: Evaluates llms.txt, AI bots, Citation Readiness & Answer Blocks.
+
+  ${ANSI.cyan}${ANSI.bold}cwv${ANSI.reset} [url]
+    Run Core Web Vitals & Real-Time Performance Audit (TTFB, Assets, Compression, Speed).
+
+  ${ANSI.cyan}${ANSI.bold}schema${ANSI.reset} [url]
+    Audit and validate JSON-LD Structured Data, Knowledge Graph entities, and OpenGraph tags.
+
   ${ANSI.cyan}${ANSI.bold}local${ANSI.reset} <location> <service>
     Harvest real-time localized search behavior, UULE Google SERP, and zero-truncation schema.
 
@@ -347,8 +368,181 @@ async function main() {
       await runProcess('node', [path.join(SCRIPTS_DIR, 'agi-brain.js'), 'dispatch', ...subArgs]);
       break;
 
-    case 'local':
     case 'geo':
+    case 'aeo':
+      {
+        const { auditGeo } = await import('../scripts/geo-engine.js');
+        const target = subArgs[0] || 'https://www.devacia.com';
+        banner();
+        console.log(`${ANSI.bold}Auditing Generative Engine Optimization (GEO) for: ${ANSI.cyan}${target}${ANSI.reset}\n`);
+        const res = await auditGeo(target);
+        console.log(`${ANSI.bold}=== GEO SCORES & AI READINESS ===${ANSI.reset}`);
+        console.log(`Overall GEO Score:       ${res.scores.geoOverall >= 80 ? ANSI.green : ANSI.yellow}${res.scores.geoOverall}/100${ANSI.reset}`);
+        console.log(`AI Crawler Access:       ${res.scores.aiCrawlerAccess}%`);
+        console.log(`Citation Readiness:      ${res.scores.citationReadiness}%`);
+        console.log(`LLMs.txt Compliance:     ${res.scores.llmsTxtCompliance}%`);
+        console.log(`Answer Block Density:    ${res.scores.answerBlockDensity}% (${res.answerBlocks.total} blocks found)`);
+        console.log(`Entity Recognition:      ${res.scores.entityStrength}% (${res.entities.length} entities tracked)\n`);
+        
+        console.log(`${ANSI.bold}=== AI BOT PERMISSION MATRIX ===${ANSI.reset}`);
+        res.crawlers.forEach(c => console.log(`  • ${c.bot.padEnd(38)}: ${c.status === 'ALLOWED' ? ANSI.green : ANSI.red}${c.status}${ANSI.reset}`));
+        
+        if (res.recommendations.length > 0) {
+          console.log(`\n${ANSI.bold}=== STRATEGIC GEO RECOMMENDATIONS ===${ANSI.reset}`);
+          res.recommendations.forEach((r, i) => console.log(`  ${i + 1}. ${ANSI.yellow}${r}${ANSI.reset}`));
+        }
+        console.log('');
+      }
+      break;
+
+    case 'cwv':
+    case 'speed':
+      {
+        const { auditCWV } = await import('../scripts/cwv-engine.js');
+        const target = subArgs[0] || 'https://www.devacia.com';
+        banner();
+        console.log(`${ANSI.bold}Auditing Core Web Vitals & Speed for: ${ANSI.cyan}${target}${ANSI.reset}\n`);
+        const res = await auditCWV(target);
+        if (res.success) {
+          console.log(`${ANSI.bold}=== PERFORMANCE & CWV REPORT (${res.source}) ===${ANSI.reset}`);
+          console.log(`Performance Score:      ${res.scores?.performance >= 80 ? ANSI.green : ANSI.yellow}${res.scores?.performance}/100${ANSI.reset}`);
+          console.log(`SEO Technical Score:    ${ANSI.green}${res.scores?.seo}/100${ANSI.reset}`);
+          if (res.metrics) {
+            console.log(`TTFB (Time to First Byte): ${res.metrics.ttfb}`);
+            console.log(`Total Response Time:       ${res.metrics.totalFetchTime}`);
+            console.log(`HTML Payload:              ${res.metrics.htmlSize} (${res.metrics.compression.toUpperCase()} compressed)`);
+            console.log(`Asset Breakdown:           ${res.metrics.scriptCount} scripts, ${res.metrics.stylesheetCount} styles, ${res.metrics.imageCount} images`);
+          }
+          if (res.opportunities?.length > 0) {
+            console.log(`\n${ANSI.bold}=== CWV OPTIMIZATION OPPORTUNITIES ===${ANSI.reset}`);
+            res.opportunities.forEach((o, i) => console.log(`  ${i + 1}. ${ANSI.yellow}${typeof o === 'string' ? o : o.title}${ANSI.reset}`));
+          }
+        } else {
+          console.error(`${ANSI.red}CWV Audit Error: ${res.error}${ANSI.reset}`);
+        }
+        console.log('');
+      }
+      break;
+
+    case 'schema':
+      {
+        const { auditSchema } = await import('../scripts/schema-validator.js');
+        const target = subArgs[0] || 'https://www.devacia.com';
+        banner();
+        console.log(`${ANSI.bold}Auditing Schema Graph & Rich Results for: ${ANSI.cyan}${target}${ANSI.reset}\n`);
+        const res = await auditSchema(target);
+        if (res.success) {
+          console.log(`${ANSI.bold}=== STRUCTURED DATA REPORT ===${ANSI.reset}`);
+          console.log(`Schema Health Score:    ${res.score >= 80 ? ANSI.green : ANSI.yellow}${res.score}/100${ANSI.reset}`);
+          console.log(`Total Schemas Injected: ${res.totalSchemas}`);
+          console.log(`Schema Types Found:     ${res.typesFound.join(', ') || 'None'}`);
+          console.log(`OpenGraph Meta Tags:    ${Object.keys(res.openGraph).length} detected`);
+          console.log(`Twitter Card Tags:      ${Object.keys(res.twitter).length} detected\n`);
+          console.log(`${ANSI.bold}Validation Checks:${ANSI.reset}`);
+          console.log(`  • Organization / Business: ${res.checks.hasOrganizationOrBusiness ? ANSI.green + '✓ PASS' : ANSI.red + '✗ FAIL'}${ANSI.reset}`);
+          console.log(`  • WebSite Schema:          ${res.checks.hasWebSite ? ANSI.green + '✓ PASS' : ANSI.red + '✗ FAIL'}${ANSI.reset}`);
+          console.log(`  • BreadcrumbList:          ${res.checks.hasBreadcrumbs ? ANSI.green + '✓ PASS' : ANSI.red + '✗ FAIL'}${ANSI.reset}`);
+          console.log(`  • OpenGraph Social Cards:  ${res.checks.hasOpenGraph ? ANSI.green + '✓ PASS' : ANSI.red + '✗ FAIL'}${ANSI.reset}`);
+        } else {
+          console.error(`${ANSI.red}Schema Audit Error: ${res.error}${ANSI.reset}`);
+        }
+        console.log('');
+      }
+      break;
+
+    case 'dr':
+    case 'authority':
+      {
+        const { calculateDomainRating } = await import('../scripts/backlink-engine.js');
+        const target = subArgs[0] || 'devacia.com';
+        banner();
+        console.log(`${ANSI.bold}Checking Domain Rating & Authority for: ${ANSI.cyan}${target}${ANSI.reset}\n`);
+        const res = await calculateDomainRating(target);
+        console.log(`${ANSI.bold}=== DOMAIN RATING & AUTHORITY METRICS ===${ANSI.reset}`);
+        console.log(`Domain Rating (Ahrefs DR):     ${ANSI.green}${res.metrics.dr}/100${ANSI.reset}`);
+        console.log(`Domain Authority (Moz DA):      ${res.metrics.da}/100`);
+        console.log(`Authority Score (Semrush AS):   ${res.metrics.authorityScore}/100`);
+        console.log(`Trust Flow:                     ${res.metrics.trustFlow}/100`);
+        console.log(`Total Backlinks:                ${res.metrics.estimatedBacklinks}`);
+        console.log(`Referring Domains:              ${res.metrics.referringDomains}`);
+        console.log(`Dofollow Link Ratio:            ${res.metrics.dofollowRatio}`);
+        console.log(`Anchor Penalty Risk:            ${res.metrics.penaltyRisk === 'LOW' ? ANSI.green : ANSI.red}${res.metrics.penaltyRisk}${ANSI.reset}\n`);
+
+        if (res.knownBacklinks?.length) {
+          console.log(`${ANSI.bold}=== TOP REFERRING BACKLINKS ===${ANSI.reset}`);
+          res.knownBacklinks.forEach(bl => {
+            console.log(`  • [DR ${bl.dr}] ${bl.source} (${bl.type}) -> "${bl.anchor}"`);
+          });
+          console.log('');
+        }
+
+        if (res.recommendations?.length) {
+          console.log(`${ANSI.bold}=== AUTHORITY GROWTH RECOMMENDATIONS ===${ANSI.reset}`);
+          res.recommendations.forEach((r, i) => console.log(`  ${i + 1}. ${ANSI.yellow}${r}${ANSI.reset}`));
+          console.log('');
+        }
+      }
+      break;
+
+    case 'backlinks':
+      {
+        const { calculateDomainRating, analyzeAnchorProfile } = await import('../scripts/backlink-engine.js');
+        const target = subArgs[0] || 'devacia.com';
+        banner();
+        console.log(`${ANSI.bold}Auditing Backlink Profile & Anchors for: ${ANSI.cyan}${target}${ANSI.reset}\n`);
+        const drData = await calculateDomainRating(target);
+        const anchors = (drData.knownBacklinks || []).map(b => b.anchor);
+        const profile = analyzeAnchorProfile(anchors, target.split('.')[0]);
+        console.log(`${ANSI.bold}=== ANCHOR TEXT PROFILE AUDIT ===${ANSI.reset}`);
+        console.log(`Total Anchors Analyzed:  ${profile.totalAnchors}`);
+        console.log(`Branded Anchors:         ${profile.breakdown.branded}`);
+        console.log(`Exact Match Anchors:     ${profile.breakdown.exactMatch}`);
+        console.log(`Partial Match Anchors:   ${profile.breakdown.partialMatch}`);
+        console.log(`Naked URL Anchors:       ${profile.breakdown.nakedUrl}`);
+        console.log(`Generic Anchors:         ${profile.breakdown.generic}`);
+        console.log(`\nGoogle Penalty Risk:     ${profile.penaltyRisk.includes('LOW') ? ANSI.green : ANSI.red}${profile.penaltyRisk}${ANSI.reset}`);
+        console.log(`Guidance:                ${profile.advice}\n`);
+      }
+      break;
+
+    case 'backlink-builder':
+    case 'links':
+      {
+        const { findCompetitorLinkGaps, generateOutreachPitch } = await import('../scripts/backlink-builder.js');
+        const target = subArgs[0] || 'devacia.com';
+        banner();
+        console.log(`${ANSI.bold}Executing Backlink Opportunity & Gap Engine for: ${ANSI.cyan}${target}${ANSI.reset}\n`);
+        const gaps = findCompetitorLinkGaps(target);
+        console.log(`${ANSI.bold}=== HIGH-AUTHORITY LINK GAP TARGETS ===${ANSI.reset}`);
+        gaps.opportunities.forEach((o, i) => {
+          console.log(`  ${i + 1}. [DR ${o.dr}] ${ANSI.cyan}${o.sourceDomain}${ANSI.reset} (${o.opportunityType})`);
+          console.log(`     Action: ${o.action}`);
+          console.log(`     Impact: ${ANSI.green}${o.estimatedImpact}${ANSI.reset}\n`);
+        });
+
+        console.log(`${ANSI.bold}=== TIER-1 DIRECTORY CITATIONS (DR 80+) ===${ANSI.reset}`);
+        gaps.tier1Directories.forEach(d => {
+          console.log(`  • [DR ${d.dr}] ${ANSI.bold}${d.name}${ANSI.reset} (${d.category}) -> ${d.submissionUrl}`);
+        });
+
+        console.log(`\n${ANSI.bold}=== SAMPLE OUTREACH PITCH ===${ANSI.reset}`);
+        const pitch = generateOutreachPitch('guest-post', { brandName: target.includes('devacia') ? 'Devacia' : 'Yoglivya' });
+        console.log(`Subject: ${ANSI.cyan}${pitch.subject}${ANSI.reset}\n`);
+        console.log(pitch.body);
+        console.log('');
+      }
+      break;
+
+    case 'test-agent':
+    case 'agent':
+      {
+        const { runAutonomousSeoAgent } = await import('../scripts/autonomous-seo-agent.js');
+        const target = subArgs[0] || 'https://www.devacia.com';
+        await runAutonomousSeoAgent(target);
+      }
+      break;
+
+    case 'local':
       await runProcess('node', [path.join(SCRIPTS_DIR, 'local-geo-intelligence.js'), ...subArgs]);
       break;
 

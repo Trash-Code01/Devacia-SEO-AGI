@@ -45,6 +45,12 @@ import {
 import { checkGscStatus } from './gsc-cli.js';
 import { checkGa4Status } from './ga4-cli.js';
 import { checkGbpStatus } from './gbp-cli.js';
+import { auditGeo } from './geo-engine.js';
+import { auditCWV } from './cwv-engine.js';
+import { auditSchema } from './schema-validator.js';
+import { calculateDomainRating, analyzeAnchorProfile } from './backlink-engine.js';
+import { findCompetitorLinkGaps, generateOutreachPitch } from './backlink-builder.js';
+import { runAutonomousSeoAgent } from './autonomous-seo-agent.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -266,6 +272,58 @@ export function startGuiServer(options = {}) {
           const titleResult = checkKeywordDensity(evalText, targetKeyword);
           return sendJson(res, 200, { success: true, mode: 'title', result: titleResult });
         }
+      }
+
+      // 10. GEO & AI Search Engine Audit
+      if (pathname === '/api/geo/audit' && req.method === 'POST') {
+        const body = await parseJsonBody(req);
+        const { url = 'https://www.devacia.com' } = body;
+        const geoResult = await auditGeo(url);
+        return sendJson(res, 200, { success: true, result: geoResult });
+      }
+
+      // 11. Core Web Vitals & Speed Audit
+      if (pathname === '/api/cwv/audit' && req.method === 'POST') {
+        const body = await parseJsonBody(req);
+        const { url = 'https://www.devacia.com', strategy = 'mobile' } = body;
+        const cwvResult = await auditCWV(url, strategy);
+        return sendJson(res, 200, { success: true, result: cwvResult });
+      }
+
+      // 12. Schema Graph & Rich Snippet Validator
+      if (pathname === '/api/schema/audit' && req.method === 'POST') {
+        const body = await parseJsonBody(req);
+        const { url = 'https://www.devacia.com' } = body;
+        const schemaResult = await auditSchema(url);
+        return sendJson(res, 200, { success: true, result: schemaResult });
+      }
+
+      // 13. Domain Rating & Backlink Audit
+      if (pathname === '/api/backlinks/audit' && req.method === 'POST') {
+        const body = await parseJsonBody(req);
+        const { domain = 'devacia.com' } = body;
+        const drData = await calculateDomainRating(domain);
+        const anchors = (drData.knownBacklinks || []).map(b => b.anchor);
+        const anchorProfile = analyzeAnchorProfile(anchors, domain.split('.')[0]);
+        return sendJson(res, 200, { success: true, drData, anchorProfile });
+      }
+
+      // 14. Competitor Link Gaps & Opportunities
+      if (pathname === '/api/backlinks/opportunities' && req.method === 'POST') {
+        const body = await parseJsonBody(req);
+        const { domain = 'devacia.com', competitors = [] } = body;
+        const gapData = findCompetitorLinkGaps(domain, competitors);
+        const guestPitch = generateOutreachPitch('guest-post', { brandName: domain.includes('devacia') ? 'Devacia' : 'Yoglivya' });
+        const footerCode = generateOutreachPitch('client-footer', { clientDomain: `https://${domain}` });
+        return sendJson(res, 200, { success: true, ...gapData, samplePitches: { guestPost: guestPitch, clientFooter: footerCode } });
+      }
+
+      // 15. Master Autonomous Agent Test Run
+      if (pathname === '/api/agent/run-test' && req.method === 'POST') {
+        const body = await parseJsonBody(req);
+        const { domain = 'https://www.devacia.com' } = body;
+        const agentResult = await runAutonomousSeoAgent(domain);
+        return sendJson(res, 200, { success: true, result: agentResult });
       }
 
       // ---------------------------------------------------------------------

@@ -50,6 +50,36 @@
           </span>
           <span class="label">On-Page Density Audit</span>
         </button>
+        <button class="nav-btn" data-tab="tab-geo">
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+          </span>
+          <span class="label">GEO & AI Search</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-cwv">
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </span>
+          <span class="label">Speed & Core Web Vitals</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-schema">
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          </span>
+          <span class="label">Schema & Rich Snippets</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-backlinks">
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          </span>
+          <span class="label">Backlinks & DR Studio</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-agent">
+          <span class="nav-svg-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"></path><rect x="4" y="8" width="16" height="12" rx="2"></rect><circle cx="9" cy="14" r="1"></circle><circle cx="15" cy="14" r="1"></circle></svg>
+          </span>
+          <span class="label">Autonomous Sentinel</span>
+        </button>
         <button class="nav-btn" data-tab="tab-system">
           <span class="nav-svg-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
@@ -541,6 +571,176 @@
               <div class="highlighted-text-box" id="highlighted-text-box">
                 <p class="empty-state-notice">Highlighted occurrences will appear here after analysis.</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: GEO & AI SEARCH ENGINE AUDIT -->
+      <section id="tab-geo" class="workspace-tab">
+        <div class="panel card">
+          <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg> <span>Generative Engine Optimization (GEO) & AI Search Auditor</span></h3>
+          <p class="section-desc">Audit website readability and citation readiness for ChatGPT Search, Claude, Perplexity AI, and Google AI Overviews.</p>
+          <div class="search-bar-row mt-3">
+            <input type="url" id="geo-target-url" class="input-text" value="https://www.devacia.com" placeholder="https://www.devacia.com">
+            <button id="btn-run-geo" class="btn btn-primary">Run GEO Audit</button>
+          </div>
+          <div id="geo-results-container" class="mt-4 hidden">
+            <div class="stats-grid-3">
+              <div class="stat-card">
+                <span class="stat-num text-success" id="geo-overall-score">85</span>
+                <span class="stat-desc">Overall GEO Score</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="geo-ai-crawlers">100%</span>
+                <span class="stat-desc">AI Crawler Access</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="geo-citation-score">100%</span>
+                <span class="stat-desc">Citation Readiness</span>
+              </div>
+            </div>
+            <div class="panel card mt-3">
+              <h4>AI Crawler Permission Matrix (Robots.txt):</h4>
+              <div id="geo-crawler-matrix" class="mt-2"></div>
+            </div>
+            <div class="panel card mt-3">
+              <h4>Strategic Recommendations:</h4>
+              <ul id="geo-recommendations" class="mt-2"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 7: SPEED & CORE WEB VITALS -->
+      <section id="tab-cwv" class="workspace-tab">
+        <div class="panel card">
+          <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> <span>Core Web Vitals & Real-Time Performance</span></h3>
+          <p class="section-desc">Test real-time TTFB, payload compression, asset sizes, and mobile rendering readiness.</p>
+          <div class="search-bar-row mt-3">
+            <input type="url" id="cwv-target-url" class="input-text" value="https://www.devacia.com" placeholder="https://www.devacia.com">
+            <button id="btn-run-cwv" class="btn btn-primary">Audit Performance</button>
+          </div>
+          <div id="cwv-results-container" class="mt-4 hidden">
+            <div class="stats-grid-3">
+              <div class="stat-card">
+                <span class="stat-num" id="cwv-perf-score">--</span>
+                <span class="stat-desc">Performance Score</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="cwv-ttfb">--</span>
+                <span class="stat-desc">TTFB</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="cwv-size">--</span>
+                <span class="stat-desc">HTML Payload</span>
+              </div>
+            </div>
+            <div class="panel card mt-3" id="cwv-opportunities-card">
+              <h4>Optimization Opportunities:</h4>
+              <ul id="cwv-opportunities-list" class="mt-2"></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 8: SCHEMA & RICH SNIPPETS -->
+      <section id="tab-schema" class="workspace-tab">
+        <div class="panel card">
+          <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> <span>Schema Graph & Rich Snippet Validator</span></h3>
+          <p class="section-desc">Validate Google Search Central JSON-LD structured data, Knowledge Graph entities, and OpenGraph social cards.</p>
+          <div class="search-bar-row mt-3">
+            <input type="url" id="schema-target-url" class="input-text" value="https://www.devacia.com" placeholder="https://www.devacia.com">
+            <button id="btn-run-schema" class="btn btn-primary">Validate Schema</button>
+          </div>
+          <div id="schema-results-container" class="mt-4 hidden">
+            <div class="stats-grid-3">
+              <div class="stat-card">
+                <span class="stat-num text-success" id="schema-score">--</span>
+                <span class="stat-desc">Schema Health</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="schema-count">--</span>
+                <span class="stat-desc">Schemas Injected</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="schema-og-count">--</span>
+                <span class="stat-desc">OpenGraph Tags</span>
+              </div>
+            </div>
+            <div class="panel card mt-3">
+              <h4>Detected Schema Types:</h4>
+              <div id="schema-types-pills" class="ngram-pills mt-2"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 9: BACKLINKS & DR STUDIO -->
+      <section id="tab-backlinks" class="workspace-tab">
+        <div class="panel card">
+          <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg> <span>Domain Rating (DR) & Backlink Intelligence Studio</span></h3>
+          <p class="section-desc">Audit Domain Rating (Ahrefs DR equivalent), Moz DA, referring domains, anchor penalty risks, and competitor link gaps.</p>
+          <div class="search-bar-row mt-3">
+            <input type="text" id="bl-target-domain" class="input-text" value="devacia.com" placeholder="devacia.com">
+            <button id="btn-run-backlinks" class="btn btn-primary">Audit Backlinks & DR</button>
+            <button id="btn-run-link-gaps" class="btn btn-outline">Find Link Gaps</button>
+          </div>
+          <div id="bl-results-container" class="mt-4 hidden">
+            <div class="stats-grid-3">
+              <div class="stat-card">
+                <span class="stat-num text-success" id="bl-dr-score">--</span>
+                <span class="stat-desc">Domain Rating (DR)</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="bl-ref-domains">--</span>
+                <span class="stat-desc">Referring Domains</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="bl-total-links">--</span>
+                <span class="stat-desc">Total Backlinks</span>
+              </div>
+            </div>
+            <div class="panel card mt-3">
+              <h4>Anchor Text Distribution & Google Penalty Risk:</h4>
+              <div class="stats-grid-3 mt-2" id="bl-anchor-grid"></div>
+              <p class="mt-2 text-muted" id="bl-anchor-advice"></p>
+            </div>
+            <div class="panel card mt-3">
+              <h4>High-Authority Tier-1 Directories (DR 80+):</h4>
+              <div id="bl-tier1-list" class="mt-2"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 10: AUTONOMOUS AGENT SENTINEL -->
+      <section id="tab-agent" class="workspace-tab">
+        <div class="panel card">
+          <h3 class="panel-section-title"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="title-svg-icon"><path d="M12 8V4H8"></path><rect x="4" y="8" width="16" height="12" rx="2"></rect><circle cx="9" cy="14" r="1"></circle><circle cx="15" cy="14" r="1"></circle></svg> <span>Autonomous SEO Agent Sentinel — Master Runner</span></h3>
+          <p class="section-desc">Run a 360-degree autonomous audit across all 6 SEO engines: GSC indexation, DR/Backlinks, GEO, CWV, and Schema.</p>
+          <div class="search-bar-row mt-3">
+            <input type="text" id="agent-target-input" class="input-text" value="https://www.devacia.com" placeholder="https://www.devacia.com">
+            <button id="btn-run-agent-test" class="btn btn-primary" style="background: linear-gradient(135deg, #ff642d, #ff385c);">🚀 RUN MASTER AGENT TEST</button>
+          </div>
+          <div id="agent-results-container" class="mt-4 hidden">
+            <div class="stats-grid-3">
+              <div class="stat-card">
+                <span class="stat-num text-success" id="agent-overall-score">--</span>
+                <span class="stat-desc">Autonomous Health Score</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="agent-dr-score">--</span>
+                <span class="stat-desc">Domain Rating (DR)</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-num" id="agent-geo-score">--</span>
+                <span class="stat-desc">GEO & AI Search</span>
+              </div>
+            </div>
+            <div class="panel card mt-3">
+              <h4>Autonomous Action Plan:</h4>
+              <ul id="agent-action-plan" class="mt-2"></ul>
             </div>
           </div>
         </div>
