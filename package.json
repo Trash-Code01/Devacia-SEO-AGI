@@ -65,7 +65,14 @@
     "title-gen": "node scripts/serp-architect.js generate",
     "queries": "node scripts/serp-architect.js queries",
     "density": "node src/seo/keyword-density-checker.js",
-    "kd": "node scripts/kd-checker.js"
+    "kd": "node scripts/kd-checker.js",
+    "dr": "node bin/seo-agi.js dr",
+    "backlinks": "node bin/seo-agi.js backlinks",
+    "links": "node bin/seo-agi.js backlink-builder",
+    "agent": "node bin/seo-agi.js test-agent",
+    "geo": "node bin/seo-agi.js geo",
+    "cwv": "node bin/seo-agi.js cwv",
+    "schema": "node bin/seo-agi.js schema"
   },
   "keywords": [
     "seo",

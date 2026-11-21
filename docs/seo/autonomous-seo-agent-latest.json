@@ -1,12 +1,12 @@
 {
   "targetDomain": "devacia.com",
   "targetUrl": "https://devacia.com",
-  "executedAt": "2026-11-21T08:25:29.093Z",
+  "executedAt": "2026-11-21T08:31:09.384Z",
   "overallScore": 75,
   "modules": {
     "domainRating": {
       "domain": "devacia.com",
-      "checkedAt": "2026-11-21T08:25:29.094Z",
+      "checkedAt": "2026-11-21T08:31:09.384Z",
       "metrics": {
         "dr": 4,
         "da": 6,
@@ -179,7 +179,7 @@
     "geo": {
       "url": "https://devacia.com",
       "origin": "https://devacia.com",
-      "checkedAt": "2026-11-21T08:25:30.173Z",
+      "checkedAt": "2026-11-21T08:31:10.208Z",
       "scores": {
         "geoOverall": 85,
         "aiCrawlerAccess": 100,
@@ -318,14 +318,14 @@
       "source": "Devacia Synthetic Core Web Engine",
       "url": "https://devacia.com",
       "strategy": "mobile",
-      "fetchedAt": "2026-11-21T08:25:31.900Z",
+      "fetchedAt": "2026-11-21T08:31:11.653Z",
       "scores": {
         "performance": 75,
         "seo": 95
       },
       "metrics": {
-        "ttfb": "105 ms",
-        "totalFetchTime": "108 ms",
+        "ttfb": "113 ms",
+        "totalFetchTime": "115 ms",
         "htmlSize": "152.6 KB",
         "compression": "br",
         "scriptCount": 31,
